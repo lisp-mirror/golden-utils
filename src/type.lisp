@@ -1,5 +1,7 @@
 (in-package :au)
 
+(deftype octet () '(unsigned-byte 8))
+
 (deftype b8 () '(signed-byte 8))
 
 (deftype ub8 () '(unsigned-byte 8))

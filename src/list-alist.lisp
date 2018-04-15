@@ -3,7 +3,7 @@
 
 (in-package :au)
 
-(deftype alist () '(satisfies alistp))
+(deftype alist () '(satisfies alist?))
 
 (defun alist-get (alist key &rest args)
   "Get the value associated with `KEY` in `ALIST`."
@@ -15,12 +15,15 @@
   (let ((cell (apply #'rassoc value alist args)))
     (values (car cell) cell)))
 
-(defun alist-remove (alist &rest keys &key test &allow-other-keys)
+(defun alist-remove (alist &rest keys)
   "Remove all `KEYS` and their associated values from `ALIST`. Non-destructive."
   (remove-if
    (lambda (x)
-     (find (car x) keys :test test))
+     (find (car x) keys :test #'eq))
    alist))
+
+(define-modify-macro alist-removef (&rest keys) alist-remove
+  "Place-modifying macro for ALIST-REMOVE.")
 
 (defun alist-keys (alist)
   "Get a list of all keys in `ALIST`."

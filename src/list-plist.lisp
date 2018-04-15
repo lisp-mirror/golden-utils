@@ -17,6 +17,9 @@
         :unless (member key keys :test #'eq)
           :append (list key value)))
 
+(define-modify-macro plist-removef (&rest keys) plist-remove
+  "Place-modifying macro for PLIST-REMOVE.")
+
 (defun plist-keys (plist)
   "Get a list of all keys in `PLIST`."
   (loop :for (key value) :on plist :by #'cddr

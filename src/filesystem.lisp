@@ -1,7 +1,5 @@
 (in-package :au)
 
-(deftype octet () '(unsigned-byte 8))
-
 (defmacro with-binary-input ((stream file) &body body)
   `(with-open-file (,stream ,file :direction :input
                                   :if-does-not-exist :error

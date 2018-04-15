@@ -1,6 +1,8 @@
 (in-package :au)
 
 (defun flatten (sequence)
+  "Traverses a sequence in order, collecting non-nil values into a list. This is different than
+Alexandria's version in that this also works for vectors or hybrid sequences."
   (let ((list))
     (labels ((traverse (sub-tree)
                (when sub-tree
@@ -15,8 +17,22 @@
     (nreverse list)))
 
 (defun flatten-numbers (sequence &key (type 'single-float))
+  "Like FLATTEN, except only keeps real numbers and arranges for the result to be a specialized
+array of element-type `TYPE`."
   (flet ((%coerce (sequence)
            (mapcar (lambda (x) (coerce x type))
                    (remove-if (complement #'realp) (flatten sequence)))))
     (let ((sequence (%coerce sequence)))
       (make-array (length sequence) :element-type type :initial-contents sequence))))
+
+(defun enumerate (sequence &key (start 0) (step 1) (key #'identity))
+  "Return an alist with each car being a number determined by sequentially incrementing from `START`
+by `STEP`, and each cdr being the element of `SEQUENCE` applied to the function `KEY`."
+  (loop :for item :in sequence
+        :for i :from start :by step
+        :for value = (funcall key item)
+        :collect (cons i value)))
+
+(defmacro doseq ((var sequence) &body body)
+  "Iterates over `SEQUENCE`, binding `VAR` to each element. Like CL:DOLIST, but for all sequences."
+  `(map nil (lambda (,var) ,@body) ,sequence))

@@ -1,4 +1,4 @@
-# Golden
+# golden-utils
 
 Auxiliary Utilities (AU).
 
@@ -13,7 +13,7 @@ using Quicklisp, clone this repository into your local-projects directory and is
 your REPL:
 
 ```lisp
-(ql:quickload :golden)
+(ql:quickload :golden-utils)
 ```
 
 ## Usage
