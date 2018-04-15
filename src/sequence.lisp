@@ -33,6 +33,6 @@ by `STEP`, and each cdr being the element of `SEQUENCE` applied to the function 
         :for value = (funcall key item)
         :collect (cons i value)))
 
-(defmacro doseq ((var sequence) &body body)
+(defmacro do-seq ((var sequence) &body body)
   "Iterates over `SEQUENCE`, binding `VAR` to each element. Like CL:DOLIST, but for all sequences."
   `(map nil (lambda (,var) ,@body) ,sequence))

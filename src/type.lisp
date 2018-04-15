@@ -2,6 +2,9 @@
 
 (deftype octet () '(unsigned-byte 8))
 
+(deftype octet-vector (&optional length)
+  `(simple-array octet (,length)))
+
 (deftype b8 () '(signed-byte 8))
 
 (deftype ub8 () '(unsigned-byte 8))
@@ -13,3 +16,6 @@
 (deftype b32 () '(signed-byte 32))
 
 (deftype ub32 () '(unsigned-byte 32))
+
+(deftype fn-> (args values)
+  `(function ,args ,values))

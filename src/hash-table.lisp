@@ -27,3 +27,19 @@ keyword symbols."
     (do-hash (k v table)
       (setf result (list* (make-keyword k) v result)))
     result))
+
+(defun do-hash-keys (fn table)
+  (do-hash (k v table)
+    (declare (ignore v))
+    (funcall fn k)))
+
+(defun do-hash-values (fn table)
+  (do-hash (k v table)
+    (declare (ignore k))
+    (funcall fn v)))
+
+(defun hash-keys (table)
+  (collecting (maphash-keys #'collect table)))
+
+(defun hash-values (table)
+  (collecting (maphash-values #'collect table)))

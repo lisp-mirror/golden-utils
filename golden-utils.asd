@@ -11,20 +11,20 @@
   :long-description #.(uiop:read-file-string (uiop/pathname:subpathname *load-pathname* "README.md"))
   :depends-on (#:alexandria
                #:serapeum
-               #:cl-arrows
+               #:arrow-macros
                #:defpackage-plus)
   :pathname "src"
   :serial t
   :components
   ((:file "package")
    (:file "macro")
+   (:file "constant")
+   (:file "type")
    (:file "symbol")
    (:file "sequence")
    (:file "list")
    (:file "list-alist")
    (:file "list-plist")
    (:file "hash-table")
-   (:file "string")
-   (:file "type")
    (:file "filesystem")
    (:file "math")))

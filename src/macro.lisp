@@ -6,10 +6,6 @@
        (print-unreadable-object (,object-symbol ,stream :type ,type :identity ,identity)
          ,@body))))
 
-(defmacro eval-always (&body body)
-  "Evaluate `BODY` always."
-  `(eval-when (:compile-toplevel :load-toplevel :execute) ,@body))
-
 (defmacro defun-inline (name &body body)
   `(progn
      (declaim (inline ,name))
@@ -29,3 +25,8 @@
            (let ((,var ,result))
              ,then)
            ,else))))
+
+(defmacro fn-> (function args values)
+  `(declaim (ftype (function ,args ,values) ,function)))
+
+(set-macro-character #\λ (lambda (s c) (declare (ignore s c)) 'lambda))
