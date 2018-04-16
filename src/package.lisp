@@ -69,95 +69,145 @@
 
   ;; Macros
   (:export
-   #:define-printer
    #:defun-inline
-   #:when-found
+   #:define-printer
+   #:fn->
    #:if-found
-   #:fn->)
+   #:when-found
+   #:while)
 
   ;; Constants
   (:export
-   #:+seconds/minute+
-   #:+minutes/hour+
+   #:+day-names+
+   #:+day-names/short+
+   #:+days/week+
    #:+hours/day+
-   #:+seconds/hour+
+   #:+hours/week+
+   #:+minutes/day+
+   #:+minutes/hour+
+   #:+minutes/week+
+   #:+month-names+
+   #:+month-names/short+
    #:+seconds/day+
-   #:+minutes/day+)
+   #:+seconds/minute+
+   #:+seconds/hour+
+   #:+seconds/week+)
 
   ;; Types
   (:export
+   #:b8
+   #:b16
+   #:b32
    #:octet
    #:octet-vector
-   #:b8
    #:ub8
-   #:b16
    #:ub16
-   #:b32
    #:ub32)
 
   ;; Symbols
   (:export
-   #:make-keyword
-   #:find-keyword)
+   #:collect-external-symbols
+   #:collect-symbols
+   #:find-keyword
+   #:make-keyword)
+
+  ;; Numbers
+  (:export
+   #:count-digits)
+
+  ;; Characters
+  (:export
+   #:ascii-alphanumeric?
+   #:ascii-char?
+   #:ascii-control?
+   #:ascii-letter?
+   #:ascii-lowercase?
+   #:ascii-number?
+   #:ascii-uppercase?
+   #:hex-char?)
+
+  ;; Strings
+  (:export
+   #:string-ends-with?
+   #:string-explode
+   #:string-merge
+   #:string-split
+   #:string-starts-with?
+   #:string-trim-whitespace)
 
   ;; Sequences
   (:export
-   #:flatten
-   #:flatten-numbers
+   #:do-seq
    #:enumerate
-   #:do-seq)
+   #:flatten
+   #:flatten-numbers)
 
   ;; Lists
   (:export
+   #:combinations/repetition
    #:interleave
-   #:combinations/repetition)
+   #:zip)
 
   ;; Association lists
   (:export
    #:alist
+   #:alist?
    #:alist-get
-   #:alist-rget
+   #:alist-keys
    #:alist-remove
    #:alist-removef
-   #:alist-keys
+   #:alist-rget
    #:alist-values
-   #:alist->plist
    #:alist->hash
-   #:alist?)
+   #:alist->plist)
 
   ;; Property lists
   (:export
    #:plist
+   #:plist?
    #:plist-get
+   #:plist-keys
    #:plist-remove
    #:plist-removef
-   #:plist-keys
    #:plist-values
    #:plist->alist
-   #:plist->hash
-   #:plist?)
+   #:plist->hash)
+
+  ;; Arrays
+  (:export
+   #:make-octet-vector)
 
   ;; Hash tables
   (:export
    #:do-hash
-   #:hash->alist
-   #:hash->plist
    #:do-hash-keys
    #:do-hash-values
    #:hash-keys
-   #:hash-values)
+   #:hash-values
+   #:hash->alist
+   #:hash->plist)
 
   ;; Filesystem
   (:export
+   #:file->string
+   #:map-files
+   #:resolve-path
+   #:safe-read-file-form
+   #:safe-read-file-forms
+   #:string->file
    #:with-binary-input
    #:with-binary-output
-   #:resolve-path
-   #:map-files
-   #:safe-read-file-form
-   #:safe-read-file)
+   #:with-file-input
+   #:with-file-output)
 
   ;; Math
   (:export
+   #:average
    #:degrees->radians
-   #:radians->degrees
-   #:map-domain))
+   #:map-domain
+   #:radians->degrees)
+
+  ;; Misc
+  (:export
+   #:flip
+   #:noop))

@@ -12,6 +12,7 @@
   :depends-on (#:alexandria
                #:serapeum
                #:arrow-macros
+               #:split-sequence
                #:defpackage-plus)
   :pathname "src"
   :serial t
@@ -21,10 +22,15 @@
    (:file "constant")
    (:file "type")
    (:file "symbol")
+   (:file "number")
+   (:file "character")
+   (:file "string")
    (:file "sequence")
    (:file "list")
    (:file "list-alist")
    (:file "list-plist")
+   (:file "array")
    (:file "hash-table")
    (:file "filesystem")
-   (:file "math")))
+   (:file "math")
+   (:file "misc")))

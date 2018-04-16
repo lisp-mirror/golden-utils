@@ -1,5 +1,16 @@
 (in-package :au)
 
+(defmacro with-file-input ((stream file) &body body)
+  `(with-open-file (,stream ,file :direction :input
+                                  :if-does-not-exist :error)
+     ,@body))
+
+(defmacro with-file-output ((stream file) &body body)
+  `(with-open-file (,stream ,file :direction :output
+                                  :if-exists :supersede
+                                  :if-does-not-exist :create)
+     ,@body))
+
 (defmacro with-binary-input ((stream file) &body body)
   `(with-open-file (,stream ,file :direction :input
                                   :if-does-not-exist :error
@@ -46,7 +57,7 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
       (with-open-file (in path)
         (read in)))))
 
-(defun safe-read-file (path &key (package :cl))
+(defun safe-read-file-forms (path &key (package :cl))
   "Read all forms of the file located at `PATH`, with *PACKAGE* bound to `PACKAGE`."
   (with-standard-io-syntax
     (let ((*package* (find-package package))
@@ -55,3 +66,15 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
         (loop :for form = (read in nil in)
               :until (eq form in)
               :collect form)))))
+
+(defun file->string (path)
+  "Read the file located at `PATH` into a string."
+  (with-file-input (in path)
+    (let ((string (make-string (file-length in))))
+      (read-sequence string in)
+      string)))
+
+(defun string->file (string path)
+  "Write `STRING` to the file located at `PATH`."
+  (with-file-output (out path)
+    (format out string)))

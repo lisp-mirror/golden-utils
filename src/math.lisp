@@ -13,3 +13,6 @@
                       (- source-max source-min))
                    dest-min
                    dest-max))
+
+(defun-inline average (numbers)
+  (/ (apply #'+ numbers) (length numbers)))

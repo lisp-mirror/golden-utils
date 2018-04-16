@@ -1,5 +1,7 @@
 (in-package :au)
 
+(set-macro-character #\λ (lambda (s c) (declare (ignore s c)) 'lambda))
+
 (defmacro define-printer ((object stream &key (type t) identity) &body body)
   (alexandria:with-gensyms (object-symbol)
     `(defmethod print-object ((,object-symbol ,object) ,stream)
@@ -29,4 +31,7 @@
 (defmacro fn-> (function args values)
   `(declaim (ftype (function ,args ,values) ,function)))
 
-(set-macro-character #\λ (lambda (s c) (declare (ignore s c)) 'lambda))
+(defmacro while (predicate &body body)
+  "Loop until `PREDICATE` returns NIL."
+  `(loop :while ,predicate
+         :do ,@body))
