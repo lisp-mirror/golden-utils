@@ -22,6 +22,7 @@
                  #:length=
                  #:lerp
                  #:map-combinations
+                 #:map-product
                  #:once-only
                  #:removef
                  #:reversef
@@ -64,6 +65,7 @@
                  #:repeat-sequence
                  #:take
                  #:throttle
+                 #:unique-name
                  #:unsplice)
   (:inherit #:arrow-macros)
 

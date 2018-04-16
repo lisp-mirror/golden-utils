@@ -39,7 +39,7 @@ keyword symbols."
     (funcall fn v)))
 
 (defun hash-keys (table)
-  (collecting (maphash-keys #'collect table)))
+  (collecting (do-hash-keys #'collect table)))
 
 (defun hash-values (table)
-  (collecting (maphash-values #'collect table)))
+  (collecting (do-hash-values #'collect table)))
