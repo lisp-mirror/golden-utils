@@ -4,4 +4,4 @@
   (check-type integer integer)
   (if (zerop integer)
       1
-      (values (ceiling (log (1+ (abs integer)) 10)))))
+      (1+ (floor (log (abs integer) 10)))))

@@ -76,6 +76,7 @@
    #:define-printer
    #:fn->
    #:if-found
+   #:unless-found
    #:when-found
    #:while)
 
