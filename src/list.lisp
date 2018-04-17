@@ -13,7 +13,7 @@
          (mapcar
           (lambda (y)
             (cons x y))
-          (combinations-with-repetition (1- n) items)))
+          (combinations/repetition (1- n) items)))
        items)))
 
 (defun zip (&rest lists)
