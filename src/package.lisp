@@ -14,6 +14,7 @@
                  #:define-constant
                  #:deletef
                  #:disjoin
+                 #:ensure-gethash
                  #:ensure-list
                  #:ensure-symbol
                  #:format-symbol
