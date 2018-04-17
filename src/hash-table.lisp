@@ -28,18 +28,22 @@ keyword symbols."
       (setf result (list* (make-keyword k) v result)))
     result))
 
-(defun do-hash-keys (fn table)
+(defun maphash-keys (fn table)
+  "Iterate over the keys of the hash table `TABLE`, calling the function `FN` on each."
   (do-hash (k v table)
     (declare (ignore v))
     (funcall fn k)))
 
-(defun do-hash-values (fn table)
+(defun maphash-values (fn table)
+  "Iterate over the values of the hash table `TABLE`, calling the function `FN` on each."
   (do-hash (k v table)
     (declare (ignore k))
     (funcall fn v)))
 
 (defun hash-keys (table)
-  (collecting (do-hash-keys #'collect table)))
+  "Collect a list of all keys in the hash table `TABLE`."
+  (collecting (maphash-keys #'collect table)))
 
 (defun hash-values (table)
-  (collecting (do-hash-values #'collect table)))
+  "Collect a list of all values in the hash table `TABLE."
+  (collecting (maphash-values #'collect table)))

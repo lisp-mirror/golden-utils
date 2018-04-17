@@ -1,23 +1,31 @@
 (in-package :au)
 
-(defmacro with-file-input ((stream file) &body body)
-  `(with-open-file (,stream ,file :direction :input
+(defmacro with-file-input ((stream path) &body body)
+  "Open the file at location `PATH` as input and perform `BODY`."
+  `(with-open-file (,stream ,path :direction :input
                                   :if-does-not-exist :error)
      ,@body))
 
-(defmacro with-file-output ((stream file) &body body)
-  `(with-open-file (,stream ,file :direction :output
+(defmacro with-file-output ((stream path) &body body)
+  "Open the file at location `PATH`, as output and perform `BODY`.
+If the file already exists, it is overwritten.
+If the file does not exist, it is created."
+  `(with-open-file (,stream ,path :direction :output
                                   :if-exists :supersede
                                   :if-does-not-exist :create)
      ,@body))
 
 (defmacro with-binary-input ((stream file) &body body)
+  "Open the file at location `PATH` as binary input and perform `BODY`."
   `(with-open-file (,stream ,file :direction :input
                                   :if-does-not-exist :error
                                   :element-type 'octet)
      ,@body))
 
 (defmacro with-binary-output ((stream file) &body body)
+  "Open the file at location `PATH`, as binary output and perform `BODY`.
+If the file already exists, it is overwritten.
+If the file does not exist, it is created."
   `(with-open-file (,stream ,file :direction :output
                                   :if-exists :supersede
                                   :if-does-not-exist :create

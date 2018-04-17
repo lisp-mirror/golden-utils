@@ -17,4 +17,5 @@
        items)))
 
 (defun zip (&rest lists)
+  "Zip the given `LISTS`."
   (apply #'mapcar #'list lists))

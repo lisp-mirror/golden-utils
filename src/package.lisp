@@ -21,6 +21,7 @@
                  #:iota
                  #:length=
                  #:lerp
+                 #:make-keyword
                  #:map-combinations
                  #:map-product
                  #:once-only
@@ -110,8 +111,7 @@
   (:export
    #:collect-external-symbols
    #:collect-symbols
-   #:find-keyword
-   #:make-keyword)
+   #:find-keyword)
 
   ;; Numbers
   (:export
