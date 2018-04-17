@@ -4,13 +4,9 @@ Auxiliary Utilities (AU).
 
 ## Overview
 
-TODO
+A collection of personal utilities that have been found useful.
 
 ## Install
-
-This system is not yet available to be installed automatically with Quicklisp. To manually install
-using Quicklisp, clone this repository into your local-projects directory and issue the following in
-your REPL:
 
 ```lisp
 (ql:quickload :golden-utils)
@@ -22,6 +18,6 @@ TODO
 
 ## License
 
-Copyright © 2017-2018 Michael Fiano <mail@michaelfiano.com>
+Copyright © 2017-2018 [Michael Fiano](mailto:mail@michaelfiano.com).
 
 Licensed under the MIT License.
