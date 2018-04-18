@@ -184,8 +184,8 @@
   ;; Hash tables
   (:export
    #:do-hash
-   #:do-hash-keys
-   #:do-hash-values
+   #:maphash-keys
+   #:maphash-values
    #:hash-keys
    #:hash-values
    #:hash->alist

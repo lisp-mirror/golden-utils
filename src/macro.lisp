@@ -4,10 +4,9 @@
 
 (defmacro define-printer ((object stream &key (type t) identity) &body body)
   "Define a PRINT-OBJECT method for `OBJECT`."
-  (with-unique-names (object-symbol)
-    `(defmethod print-object ((,object-symbol ,object) ,stream)
-       (print-unreadable-object (,object-symbol ,stream :type ,type :identity ,identity)
-         ,@body))))
+  `(defmethod print-object ((,object ,object) ,stream)
+     (print-unreadable-object (,object ,stream :type ,type :identity ,identity)
+       ,@body)))
 
 (defmacro defun-inline (name &body body)
   "Conveniently define the function `NAME` and also inline it."
@@ -40,10 +39,10 @@ result. `LOOKUP` is an expression that returns two values, with the second value
 lookup was successful, such as with GETHASH."
   (with-unique-names (found result)
     `(multiple-value-bind (,result ,found) ,lookup
-       (if ,found
-           (let ((,var ,result))
-             ,then)
-           ,else))))
+       (let ((,var ,result))
+         (if ,found
+             ,then
+             ,else)))))
 
 (defmacro fn-> (function args values)
   "Declaim the `FTYPE` of function from `ARGS` to `VALUES`."
