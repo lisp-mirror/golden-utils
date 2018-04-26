@@ -1,10 +1,5 @@
 (in-package :au)
 
-(deftype octet () '(unsigned-byte 8))
-
-(deftype octet-vector (&optional length)
-  `(simple-array octet (,length)))
-
 (deftype b8 () '(signed-byte 8))
 
 (deftype ub8 () '(unsigned-byte 8))

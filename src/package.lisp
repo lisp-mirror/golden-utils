@@ -3,73 +3,17 @@
 (defpackage+-1:defpackage+ #:golden-utils
   (:nicknames #:au)
   (:use #:cl)
-
-  ;; Third-party utilities
-  (:inherit-from #:alexandria
-                 #:appendf
-                 #:clamp
-                 #:compose
-                 #:conjoin
-                 #:copy-sequence
-                 #:define-constant
-                 #:deletef
-                 #:disjoin
-                 #:ensure-gethash
-                 #:ensure-list
-                 #:ensure-symbol
-                 #:format-symbol
-                 #:if-let
-                 #:iota
-                 #:length=
-                 #:lerp
-                 #:make-keyword
-                 #:map-combinations
-                 #:map-product
-                 #:once-only
-                 #:removef
-                 #:reversef
-                 #:rotate
-                 #:shuffle
-                 #:switch
-                 #:symbolicate
-                 #:type=
-                 #:with-unique-names
-                 #:when-let
-                 #:when-let*)
-  (:inherit-from #:serapeum
-                 #:assort
-                 #:batches
-                 #:class-name-of
-                 #:collecting
-                 #:defalias
-                 #:defplace
-                 #:dict
-                 #:dict*
-                 #:drop
-                 #:eval-always
-                 #:file=
-                 #:file-size
-                 #:filter
-                 #:filter-map
-                 #:flip-hash-table
-                 #:fmt
-                 #:halves
-                 #:href
-                 #:href-default
-                 #:merge-tables
-                 #:mvlet
-                 #:mvlet*
-                 #:nlet
-                 #:op
-                 #:partial
-                 #:partition
-                 #:path-join
-                 #:repeat-sequence
-                 #:take
-                 #:throttle
-                 #:unique-name
-                 #:unsplice)
   (:inherit #:arrow-macros)
+  (:inherit-except
+   #:alexandria
+   #:flatten
+   #:maphash-keys
+   #:maphash-values)
+  (:inherit-except
+   #:serapeum
+   #:->
+   #:plist-keys
+   #:plist-values)
 
   ;; Macros
   (:export
@@ -103,8 +47,6 @@
    #:b8
    #:b16
    #:b32
-   #:octet
-   #:octet-vector
    #:ub8
    #:ub16
    #:ub32)
@@ -112,8 +54,7 @@
   ;; Symbols
   (:export
    #:collect-external-symbols
-   #:collect-symbols
-   #:find-keyword)
+   #:collect-symbols)
 
   ;; Numbers
   (:export
@@ -177,10 +118,6 @@
    #:plist->alist
    #:plist->hash)
 
-  ;; Arrays
-  (:export
-   #:make-octet-vector)
-
   ;; Hash tables
   (:export
    #:do-hash
@@ -213,5 +150,4 @@
 
   ;; Misc
   (:export
-   #:flip
    #:noop))

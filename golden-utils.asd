@@ -29,7 +29,6 @@
    (:file "list")
    (:file "list-alist")
    (:file "list-plist")
-   (:file "array")
    (:file "hash-table")
    (:file "filesystem")
    (:file "math")
