@@ -32,7 +32,7 @@ If the file does not exist, it is created."
                                   :element-type 'octet)
      ,@body))
 
-(defun resolve-path (system &optional path)
+(defun resolve-system-path (system &optional path)
   "Resolve the absolute path of the filesystem where `PATH` is located, relative to the ASDF system,
 `SYSTEM`, or relative to the program location in the case of running a dumped Lisp image from the
 command line.

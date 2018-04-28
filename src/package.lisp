@@ -132,7 +132,7 @@
   (:export
    #:file->string
    #:map-files
-   #:resolve-path
+   #:resolve-system-path
    #:safe-read-file-form
    #:safe-read-file-forms
    #:string->file
