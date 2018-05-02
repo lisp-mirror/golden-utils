@@ -1,7 +1,5 @@
 (in-package :au)
 
-(set-macro-character #\λ (lambda (s c) (declare (ignore s c)) 'lambda))
-
 (defmacro define-printer ((object stream &key (type t) identity) &body body)
   "Define a PRINT-OBJECT method for `OBJECT`."
   `(defmethod print-object ((,object ,object) ,stream)
