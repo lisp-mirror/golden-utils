@@ -13,6 +13,18 @@
           `(let ((,key ,value))
              ,result)))))
 
+(defmacro do-hash-keys ((key table) &body body)
+  "Iterate over hash table `TABLE`, binding each key to `KEY`."
+  `(do-hash (,key v ,table)
+     (declare (ignore v))
+     ,@body))
+
+(defmacro do-hash-values ((value table) &body body)
+  "Iterate over hash table `TABLE`, binding each value to `VALUE`."
+  `(do-hash (k ,value ,table)
+     (declare (ignore k))
+     ,@body))
+
 (defun hash->alist (table)
   "Convert the keys and values of the hash table `TABLE` to an association list."
   (let ((result))
