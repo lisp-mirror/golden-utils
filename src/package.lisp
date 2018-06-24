@@ -10,6 +10,7 @@
                  #:clamp
                  #:compose
                  #:conjoin
+                 #:copy-hash-table
                  #:copy-sequence
                  #:define-constant
                  #:deletef
