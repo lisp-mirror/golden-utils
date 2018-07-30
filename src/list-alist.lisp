@@ -3,7 +3,7 @@
 
 (in-package :au)
 
-(deftype alist () '(satisfies alist?))
+(deftype alist () '(satisfies alist-p))
 
 (defun alist-get (alist key &rest args)
   "Get the value associated with `KEY` in `ALIST`."
@@ -48,7 +48,7 @@ elements."
       (setf (gethash (car cell) table) (cdr cell)))
     table))
 
-(defun alist? (item)
+(defun alist-p (item)
   "Check whether or not `ITEM` is an association list."
   (and (listp item)
        (every #'consp item)))

@@ -19,6 +19,8 @@
                  #:ensure-list
                  #:ensure-symbol
                  #:format-symbol
+                 #:hash-table-keys
+                 #:hash-table-values
                  #:if-let
                  #:iota
                  #:length=
@@ -120,22 +122,22 @@
 
   ;; Characters
   (:export
-   #:ascii-alphanumeric?
-   #:ascii-char?
-   #:ascii-control?
-   #:ascii-letter?
-   #:ascii-lowercase?
-   #:ascii-number?
-   #:ascii-uppercase?
-   #:hex-char?)
+   #:ascii-alphanumeric-p
+   #:ascii-char-p
+   #:ascii-control-p
+   #:ascii-letter-p
+   #:ascii-lowercase-p
+   #:ascii-number-p
+   #:ascii-uppercase-p
+   #:hex-char-p)
 
   ;; Strings
   (:export
-   #:string-ends-with?
+   #:string-ends-with-p
    #:string-explode
    #:string-merge
    #:string-split
-   #:string-starts-with?
+   #:string-starts-with-p
    #:string-trim-whitespace)
 
   ;; Sequences
@@ -154,7 +156,7 @@
   ;; Association lists
   (:export
    #:alist
-   #:alist?
+   #:alist-p
    #:alist-get
    #:alist-keys
    #:alist-remove
@@ -167,7 +169,7 @@
   ;; Property lists
   (:export
    #:plist
-   #:plist?
+   #:plist-p
    #:plist-get
    #:plist-keys
    #:plist-remove

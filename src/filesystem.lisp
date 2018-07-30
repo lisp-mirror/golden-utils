@@ -44,10 +44,10 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
                  (uiop:pathname-directory-pathname (uiop:argv0))))
       (asdf/system:system-relative-pathname (asdf:find-system system) path)))
 
-(defun map-files (path function &key (test (constantly t)) (recursive? t))
+(defun map-files (path function &key (test (constantly t)) (recursive-p t))
   "Map over all files located in the directory of `PATH`, applying `FUNCTION` to each file's path.
 `TEST` is a function that takes a file path and decides if `FUNCTION` should be applied to it.
-`RECURSIVE?`, when non-NIL will descend into sub-directories of `PATH` recursively."
+`RECURSIVE-P`, when non-NIL will descend into sub-directories of `PATH` recursively."
   (labels ((process-files (dir)
              (map nil
                   (lambda (x)
@@ -55,7 +55,7 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
                       (funcall function x)))
                   (uiop/filesystem:directory-files dir))))
     (uiop/filesystem:collect-sub*directories
-     (uiop/pathname:ensure-directory-pathname path) t recursive? #'process-files)))
+     (uiop/pathname:ensure-directory-pathname path) t recursive-p #'process-files)))
 
 (defun safe-read-file-form (path &key (package :cl))
   "Read the first form of the file located at `PATH`, with *PACKAGE* bound to `PACKAGE`."

@@ -5,7 +5,7 @@
 
 (in-package :au)
 
-(deftype plist () '(satisfies plist?))
+(deftype plist () '(satisfies plist-p))
 
 (defun plist-get (plist key)
   "Get the value associated with `KEY` in `PLIST`."
@@ -42,7 +42,7 @@
           :do (setf (gethash key table) value))
     table))
 
-(defun plist? (item)
+(defun plist-p (item)
   "Check whether or not `ITEM` is a property list."
   (and (listp item)
        (evenp (length item))

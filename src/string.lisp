@@ -17,13 +17,13 @@
   "Split `STRING` into a list of sub-strings on `DELIMITER`."
   (split-sequence:split-sequence delimiter string :remove-empty-subseqs t))
 
-(defun string-starts-with? (string prefix)
+(defun string-starts-with-p (string prefix)
   "Check if `STRING` starts with `PREFIX`."
   (let ((prefix-length (length prefix)))
     (when (<= prefix-length (length string))
       (string= prefix (subseq string 0 prefix-length)))))
 
-(defun string-ends-with? (string suffix)
+(defun string-ends-with-p (string suffix)
   "Check if `STRING` ends with `SUFFIX`."
   (let ((length (length string))
         (suffix-length (length suffix)))
