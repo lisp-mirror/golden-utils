@@ -21,12 +21,16 @@
 (define-constant +seconds/week+ (* +seconds/minute+ +minutes/week+))
 
 (define-constant +day-names+ '("Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"
-                               "Sunday") :test #'equal)
+                               "Sunday")
+  :test #'equal)
 
-(define-constant +day-names/short+ '("Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun") :test #'equal)
+(define-constant +day-names/short+ '("Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun")
+  :test #'equal)
 
 (define-constant +month-names+ '("January" "February" "March" "April" "May" "June" "July" "August"
-                                 "September" "October" "November" "December") :test #'equal)
+                                 "September" "October" "November" "December")
+  :test #'equal)
 
 (define-constant +month-names/short+ '("Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct"
-                                       "Nov" "Dec") :test #'equal)
+                                       "Nov" "Dec")
+  :test #'equal)
