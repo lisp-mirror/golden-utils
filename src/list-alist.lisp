@@ -5,6 +5,11 @@
 
 (deftype alist () '(satisfies alist-p))
 
+(defun alist-p (item)
+  "Check whether or not `ITEM` is an association list."
+  (and (listp item)
+       (every #'consp item)))
+
 (defun alist-get (alist key &rest args)
   "Get the value associated with `KEY` in `ALIST`."
   (let ((cell (apply #'assoc key alist args)))
@@ -47,8 +52,3 @@ elements."
     (dolist (cell alist)
       (setf (gethash (car cell) table) (cdr cell)))
     table))
-
-(defun alist-p (item)
-  "Check whether or not `ITEM` is an association list."
-  (and (listp item)
-       (every #'consp item)))

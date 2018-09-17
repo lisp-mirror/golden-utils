@@ -7,6 +7,14 @@
 
 (deftype plist () '(satisfies plist-p))
 
+(defun plist-p (item)
+  "Check whether or not `ITEM` is a property list."
+  (and (listp item)
+       (evenp (length item))
+       (every #'keywordp
+              (loop :for element :in item :by #'cddr
+                    :collect element))))
+
 (defun plist-get (plist key)
   "Get the value associated with `KEY` in `PLIST`."
   (getf plist key))
@@ -51,12 +59,3 @@
               :do (setf (gethash key table) value))
         table)
       (error "~a is not a property list." plist)))
-
-(defun plist-p (item)
-  "Check whether or not `ITEM` is a property list."
-  (and (listp item)
-       (evenp (length item))
-       (every
-        #'keywordp
-        (loop :for element :in item :by #'cddr
-              :collect element))))
