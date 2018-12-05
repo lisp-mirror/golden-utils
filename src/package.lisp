@@ -69,6 +69,8 @@
                  #:partition
                  #:path-join
                  #:repeat-sequence
+                 #:split-sequence
+                 #:string-contains-p
                  #:take
                  #:throttle
                  #:unique-name
