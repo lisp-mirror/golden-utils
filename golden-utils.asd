@@ -13,6 +13,7 @@
                #:serapeum
                #:arrow-macros
                #:split-sequence
+               #:cl-pcg
                #:defpackage-plus)
   :pathname "src"
   :serial t
@@ -32,4 +33,5 @@
    (:file "hash-table")
    (:file "filesystem")
    (:file "math")
+   (:file "random")
    (:file "misc")))

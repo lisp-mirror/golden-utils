@@ -212,6 +212,14 @@
    #:map-domain
    #:radians->degrees)
 
+  ;; Random
+  (:export
+   #:make-rng
+   #:random-boolean
+   #:random-int
+   #:random-float
+   #:random-element)
+
   ;; Misc
   (:export
    #:noop))
