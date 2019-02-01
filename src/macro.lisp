@@ -19,6 +19,7 @@
 was successful, such as with GETHASH."
   (with-unique-names (found)
     `(multiple-value-bind (,var ,found) ,lookup
+       (declare (ignorable ,var))
        (when ,found
          ,@body))))
 
@@ -28,6 +29,7 @@ was successful, such as with GETHASH."
 was successful, such as with GETHASH."
   (with-unique-names (found)
     `(multiple-value-bind (,var ,found) ,lookup
+       (declare (ignorable ,var))
        (unless ,found
          ,@body))))
 
