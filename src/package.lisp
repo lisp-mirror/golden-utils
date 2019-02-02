@@ -28,6 +28,7 @@
                  #:make-keyword
                  #:map-combinations
                  #:map-product
+                 #:mappend
                  #:once-only
                  #:removef
                  #:reversef
