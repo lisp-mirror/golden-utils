@@ -36,11 +36,10 @@
     result))
 
 (defun hash->plist (table)
-  "Convert the keys and values of the hash table `TABLE` to a property list which has keys being
-keyword symbols."
+  "Convert the keys and values of the hash table `TABLE` to a property list."
   (let (result)
     (do-hash (key value table)
-      (setf result (list* (make-keyword key) value result)))
+      (setf result (list* key value result)))
     result))
 
 (defun maphash-keys (fn table)
