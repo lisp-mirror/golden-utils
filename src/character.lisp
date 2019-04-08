@@ -27,6 +27,9 @@
   (or (ascii-letter-p char)
       (ascii-number-p char)))
 
+(defun null-char-p (char)
+  (char= char #\Nul))
+
 (defun ascii-control-p (char)
   "Check if the character `CHAR` is an ASCII control character."
   (let ((code (char-code char)))

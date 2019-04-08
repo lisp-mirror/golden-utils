@@ -132,7 +132,8 @@
    #:ascii-lowercase-p
    #:ascii-number-p
    #:ascii-uppercase-p
-   #:hex-char-p)
+   #:hex-char-p
+   #:null-char-p)
 
   ;; Strings
   (:export
