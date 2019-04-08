@@ -5,105 +5,91 @@
   (:use #:cl)
 
   ;; Third-party libraries
-  (:inherit-from #:alexandria
-                 #:appendf
-                 #:clamp
-                 #:compose
-                 #:conjoin
-                 #:copy-hash-table
-                 #:copy-sequence
-                 #:define-constant
-                 #:deletef
-                 #:disjoin
-                 #:ensure-gethash
-                 #:ensure-list
-                 #:ensure-symbol
-                 #:format-symbol
-                 #:hash-table-keys
-                 #:hash-table-values
-                 #:if-let
-                 #:iota
-                 #:length=
-                 #:lerp
-                 #:make-keyword
-                 #:map-combinations
-                 #:map-product
-                 #:mappend
-                 #:once-only
-                 #:removef
-                 #:reversef
-                 #:rotate
-                 #:shuffle
-                 #:switch
-                 #:symbolicate
-                 #:type=
-                 #:with-unique-names
-                 #:when-let
-                 #:when-let*)
-  (:inherit-from #:serapeum
-                 #:assort
-                 #:batches
-                 #:class-name-of
-                 #:collecting
-                 #:defalias
-                 #:defplace
-                 #:dict
-                 #:dict*
-                 #:drop
-                 #:eval-always
-                 #:file=
-                 #:file-size
-                 #:filter
-                 #:filter-map
-                 #:flip-hash-table
-                 #:fmt
-                 #:halves
-                 #:href
-                 #:href-default
-                 #:merge-tables
-                 #:mvlet
-                 #:mvlet*
-                 #:nlet
-                 #:octet
-                 #:op
-                 #:partial
-                 #:partition
-                 #:path-join
-                 #:repeat-sequence
-                 #:split-sequence
-                 #:string-contains-p
-                 #:take
-                 #:throttle
-                 #:unique-name
-                 #:unsplice)
+  (:inherit-from
+   #:alexandria
+   #:appendf
+   #:clamp
+   #:compose
+   #:conjoin
+   #:copy-hash-table
+   #:copy-sequence
+   #:define-constant
+   #:deletef
+   #:disjoin
+   #:ensure-gethash
+   #:ensure-list
+   #:ensure-symbol
+   #:format-symbol
+   #:hash-table-keys
+   #:hash-table-values
+   #:if-let
+   #:iota
+   #:length=
+   #:lerp
+   #:make-keyword
+   #:map-combinations
+   #:map-product
+   #:mappend
+   #:once-only
+   #:removef
+   #:reversef
+   #:rotate
+   #:shuffle
+   #:switch
+   #:symbolicate
+   #:type=
+   #:with-unique-names
+   #:when-let
+   #:when-let*)
+  (:inherit-from
+   #:serapeum
+   #:assort
+   #:batches
+   #:class-name-of
+   #:collecting
+   #:defalias
+   #:defplace
+   #:dict
+   #:dict*
+   #:drop
+   #:eval-always
+   #:file=
+   #:file-size
+   #:filter
+   #:filter-map
+   #:flip-hash-table
+   #:fmt
+   #:halves
+   #:href
+   #:href-default
+   #:merge-tables
+   #:mvlet
+   #:mvlet*
+   #:nlet
+   #:octet
+   #:op
+   #:partial
+   #:partition
+   #:path-join
+   #:repeat-sequence
+   #:split-sequence
+   #:string-contains-p
+   #:take
+   #:throttle
+   #:unique-name
+   #:unsplice)
   (:inherit #:arrow-macros)
 
   ;; Macros
   (:export
    #:defun-inline
    #:define-printer
+   #:defunits
    #:fn->
    #:if-found
    #:unless-found
    #:when-found
    #:while)
-
-  ;; Constants
-  (:export
-   #:+day-names+
-   #:+day-names/short+
-   #:+days/week+
-   #:+hours/day+
-   #:+hours/week+
-   #:+minutes/day+
-   #:+minutes/hour+
-   #:+minutes/week+
-   #:+month-names+
-   #:+month-names/short+
-   #:+seconds/day+
-   #:+seconds/minute+
-   #:+seconds/hour+
-   #:+seconds/week+)
 
   ;; Types
   (:export

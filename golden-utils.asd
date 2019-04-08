@@ -20,7 +20,6 @@
   :components
   ((:file "package")
    (:file "macro")
-   (:file "constant")
    (:file "type")
    (:file "symbol")
    (:file "number")
@@ -34,4 +33,5 @@
    (:file "filesystem")
    (:file "math")
    (:file "random")
+   (:file "units")
    (:file "misc")))
