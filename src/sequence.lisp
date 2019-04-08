@@ -4,7 +4,7 @@
   "Traverses a sequence in order, collecting non-nil values into a list. This is
 different than Alexandria's version in that this also works for vectors or
 hybrid sequences."
-  (let ((list))
+  (let (list)
     (labels ((traverse (sub-tree)
                (when sub-tree
                  (typecase sub-tree
