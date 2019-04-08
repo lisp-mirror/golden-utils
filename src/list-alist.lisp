@@ -39,8 +39,8 @@
   (mapcar #'cdr alist))
 
 (defun alist->plist (alist)
-  "Convert `ALIST` to a property list. A property list in this context has keyword symbols for its odd
-elements."
+  "Convert `ALIST` to a property list. A property list in this context has
+keyword symbols for its odd elements."
   (mapcan
    (lambda (x)
      (list (make-keyword (car x)) (cdr x)))

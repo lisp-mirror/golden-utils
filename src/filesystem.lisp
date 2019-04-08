@@ -34,10 +34,10 @@ If the file does not exist, it is created."
 
 (defun resolve-system-path (system &optional path)
   "Resolve the absolute path of the filesystem where `PATH` is located, relative to the ASDF system,
-`SYSTEM`, or relative to the program location in the case of running a dumped Lisp image from the
-command line.
-Note: A dumped image must have either been created with UIOP:DUMP-IMAGE, or have manually set
-UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
+`SYSTEM`, or relative to the program location in the case of running a dumped
+Lisp image from the command line.
+Note: A dumped image must have either been created with UIOP:DUMP-IMAGE, or have
+manually set UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
   (if uiop/image:*image-dumped-p*
       (truename (uiop/pathname:merge-pathnames*
                  path
@@ -45,9 +45,10 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
       (asdf/system:system-relative-pathname (asdf:find-system system) path)))
 
 (defun map-files (path function &key (test (constantly t)) (recursive-p t))
-  "Map over all files located in the directory of `PATH`, applying `FUNCTION` to each file's path.
-`TEST` is a function that takes a file path and decides if `FUNCTION` should be applied to it.
-`RECURSIVE-P`, when non-NIL will descend into sub-directories of `PATH` recursively."
+  "Map over all files located in the directory of `PATH`, applying `FUNCTION` to
+each file's path. `TEST` is a function that takes a file path and decides if
+`FUNCTION` should be applied to it. `RECURSIVE-P`, when non-NIL will descend
+into sub-directories of `PATH` recursively."
   (labels ((process-files (dir)
              (map nil
                   (lambda (x)
@@ -55,10 +56,12 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
                       (funcall function x)))
                   (uiop/filesystem:directory-files dir))))
     (uiop/filesystem:collect-sub*directories
-     (uiop/pathname:ensure-directory-pathname path) t recursive-p #'process-files)))
+     (uiop/pathname:ensure-directory-pathname path)
+     t recursive-p #'process-files)))
 
 (defun safe-read-file-form (path &key (package :cl))
-  "Read the first form of the file located at `PATH`, with *PACKAGE* bound to `PACKAGE`."
+  "Read the first form of the file located at `PATH`, with *PACKAGE* bound to
+`PACKAGE`."
   (with-standard-io-syntax
     (let ((*package* (find-package package))
           (*read-eval* nil))
@@ -66,7 +69,8 @@ UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
         (read in)))))
 
 (defun safe-read-file-forms (path &key (package :cl))
-  "Read all forms of the file located at `PATH`, with *PACKAGE* bound to `PACKAGE`."
+  "Read all forms of the file located at `PATH`, with *PACKAGE* bound to
+`PACKAGE`."
   (with-standard-io-syntax
     (let ((*package* (find-package package))
           (*read-eval* nil))

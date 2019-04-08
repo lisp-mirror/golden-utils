@@ -1,7 +1,8 @@
 (in-package :au)
 
 (defmacro do-hash ((key value table &optional result) &body body)
-  "Iterates over hash table `TABLE`, binding each key to `KEY`, and its value to `VALUE`."
+  "Iterates over hash table `TABLE`, binding each key to `KEY`, and its value to
+`VALUE`."
   (with-unique-names (block-name)
     (multiple-value-bind (body decls) (alexandria:parse-body body)
       `(block ,block-name
@@ -29,7 +30,8 @@
        ,@body)))
 
 (defun hash->alist (table)
-  "Convert the keys and values of the hash table `TABLE` to an association list."
+  "Convert the keys and values of the hash table `TABLE` to an association
+list."
   (let (result)
     (do-hash (key value table)
       (push (cons key value) result))
@@ -43,13 +45,15 @@
     result))
 
 (defun maphash-keys (fn table)
-  "Iterate over the keys of the hash table `TABLE`, calling the function `FN` on each."
+  "Iterate over the keys of the hash table `TABLE`, calling the function `FN` on
+each."
   (do-hash (key value table)
     (declare (ignore value))
     (funcall fn key)))
 
 (defun maphash-values (fn table)
-  "Iterate over the values of the hash table `TABLE`, calling the function `FN` on each."
+  "Iterate over the values of the hash table `TABLE`, calling the function `FN`
+on each."
   (do-hash (key value table)
     (declare (ignore key))
     (funcall fn value)))

@@ -1,7 +1,7 @@
 ;;;; Property lists
 ;;;; Various functions dealing with property lists.
-;;;; Note: Property lists in the context of this library are defined as a list of an even number of
-;;;; elements, where even indices hold keyword symbols.
+;;;; Note: Property lists in the context of this library are defined as a list
+;;;; of an even number of elements, where even indices hold keyword symbols.
 
 (in-package :au)
 
@@ -33,14 +33,14 @@
 (defun plist-keys (plist)
   "Get a list of all keys in `PLIST`."
   (if (plist-p plist)
-      (loop :for (key value) :on plist :by #'cddr
+      (loop :for (key nil) :on plist :by #'cddr
             :collect key)
       (error "~a is not a property list." plist)))
 
 (defun plist-values (plist)
   "Get a list of all values in `PLIST`."
   (if (plist-p plist)
-      (loop :for (key value) :on plist :by #'cddr
+      (loop :for (nil value) :on plist :by #'cddr
             :collect value)
       (error "~a is not a property list." plist)))
 

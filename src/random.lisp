@@ -19,7 +19,10 @@
   (declare (type (unsigned-byte 32) min max)
            (type boolean parity-p))
   (if parity-p
-      (+ min (* 2 (pcg:pcg-random-bounded% generator (1+ (floor (- max min) 2)))))
+      (+ min
+         (* (pcg:pcg-random-bounded%
+             generator (1+ (floor (- max min) 2)))
+            2))
       (+ min (pcg:pcg-random-bounded% generator (1+ (- max min))))))
 
 (defun random-float (generator &key (min 0.0) (max 1.0))

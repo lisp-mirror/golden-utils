@@ -15,7 +15,7 @@
 
 (defun string-split (string &optional (delimiter #\Space))
   "Split `STRING` into a list of sub-strings on `DELIMITER`."
-  (split-sequence:split-sequence delimiter string :remove-empty-subseqs t))
+  (au:split-sequence delimiter string :remove-empty-subseqs t))
 
 (defun string-starts-with-p (string prefix)
   "Check if `STRING` starts with `PREFIX`."
