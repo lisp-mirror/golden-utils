@@ -82,11 +82,16 @@
 
   ;; Macros
   (:export
-   #:defun-inline
+   #:aif
+   #:alambda
    #:define-printer
+   #:defun-inline
    #:defunits
+   #:dlambda
    #:fn->
    #:if-found
+   #:self
+   #:tree-leaves
    #:unless-found
    #:when-found
    #:while)

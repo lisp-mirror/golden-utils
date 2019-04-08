@@ -20,3 +20,12 @@ repetitions allowed."
 (defun zip (&rest lists)
   "Zip the given `LISTS`."
   (apply #'mapcar #'list lists))
+
+(defun tree-leaves (tree test result)
+  (when tree
+    (if (listp tree)
+        (cons (tree-leaves (car tree) test result)
+              (tree-leaves (cdr tree) test result))
+        (if (funcall test tree)
+            (funcall result tree)
+            tree))))

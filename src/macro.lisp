@@ -53,3 +53,26 @@ GETHASH."
   "Loop until `PREDICATE` returns NIL."
   `(loop :while ,predicate
          :do ,@body))
+
+(defmacro dlambda (&body ds)
+  (with-unique-names (args)
+    `(lambda (&rest ,args)
+       (case (car ,args)
+         ,@(mapcar
+            (lambda (x)
+              (destructuring-bind (name . rest) x
+                `(,name
+                  (apply
+                   (lambda ,@rest)
+                   ,(if (eq name t)
+                        args
+                        `(cdr ,args))))))
+            ds)))))
+
+(defmacro alambda (args &body body)
+  `(labels ((self ,args ,@body))
+     #'self))
+
+(defmacro aif (test then &optional else)
+  `(let ((it ,test))
+     (if it ,then ,else)))
