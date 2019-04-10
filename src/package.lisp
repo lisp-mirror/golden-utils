@@ -31,6 +31,7 @@
    #:map-product
    #:mappend
    #:once-only
+   #:parse-body
    #:removef
    #:reversef
    #:rotate
@@ -82,19 +83,24 @@
 
   ;; Macros
   (:export
-   #:aif
-   #:alambda
    #:define-printer
    #:defun-inline
    #:defunits
-   #:dlambda
    #:fn->
    #:if-found
-   #:self
-   #:tree-leaves
    #:unless-found
    #:when-found
    #:while)
+
+  ;; Closures
+  (:export
+   #:define-pfun
+   #:dlambda
+   #:hotpatch
+   #:plambda
+   #:self
+   #:this
+   #:with-pvars)
 
   ;; Types
   (:export
@@ -146,6 +152,7 @@
   (:export
    #:combinations/repetition
    #:interleave
+   #:tree-leaves
    #:zip)
 
   ;; Association lists

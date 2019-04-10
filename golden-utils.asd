@@ -8,7 +8,6 @@
   :source-control (:git "https://github.com/mfiano/golden-utils.git")
   :version "0.1.0"
   :encoding :utf-8
-  :long-description #.(uiop:read-file-string (uiop/pathname:subpathname *load-pathname* "README.md"))
   :depends-on (#:alexandria
                #:serapeum
                #:arrow-macros
@@ -20,6 +19,7 @@
   :components
   ((:file "package")
    (:file "macro")
+   (:file "closure")
    (:file "type")
    (:file "symbol")
    (:file "number")

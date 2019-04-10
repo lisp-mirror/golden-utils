@@ -6,12 +6,15 @@
      (print-unreadable-object (,object ,stream :type ,type :identity ,identity)
        ,@body)))
 
-(defmacro defun-inline (name &body body)
+(defmacro defun-inline (name args &body body)
   "Conveniently define the function `NAME` and also inline it."
-  `(progn
-     (declaim (inline ,name))
-     (defun ,name ,@body)
-     ',name))
+  (mvlet ((body decls doc (parse-body body :documentation t)))
+    `(progn
+       (declaim (inline ,name))
+       (defun ,name ,args
+         ,@(when doc `(,doc))
+         ,@decls
+         ,@body))))
 
 (defmacro when-found ((var lookup) &body body)
   "If `LOOKUP` is successful, perform `BODY` with `VAR` bound to the result.
@@ -53,26 +56,3 @@ GETHASH."
   "Loop until `PREDICATE` returns NIL."
   `(loop :while ,predicate
          :do ,@body))
-
-(defmacro dlambda (&body ds)
-  (with-unique-names (args)
-    `(lambda (&rest ,args)
-       (case (car ,args)
-         ,@(mapcar
-            (lambda (x)
-              (destructuring-bind (name . rest) x
-                `(,name
-                  (apply
-                   (lambda ,@rest)
-                   ,(if (eq name t)
-                        args
-                        `(cdr ,args))))))
-            ds)))))
-
-(defmacro alambda (args &body body)
-  `(labels ((self ,args ,@body))
-     #'self))
-
-(defmacro aif (test then &optional else)
-  `(let ((it ,test))
-     (if it ,then ,else)))
