@@ -12,11 +12,13 @@
   (pcg:make-pcg :seed seed))
 
 (defun random-boolean (generator &optional (probability 0.5))
-  (declare (type single-float probability))
+  (declare (optimize speed)
+           (type single-float probability))
   (< (pcg:pcg-random-float% generator) probability))
 
 (defun random-int (generator &key (min 0) (max 1) parity-p)
-  (declare (type (unsigned-byte 32) min max)
+  (declare (optimize speed)
+           (type (unsigned-byte 32) min max)
            (type boolean parity-p))
   (if parity-p
       (+ min
@@ -26,11 +28,13 @@
       (+ min (pcg:pcg-random-bounded% generator (1+ (- max min))))))
 
 (defun random-float (generator &key (min 0.0) (max 1.0))
-  (declare (type single-float min max))
+  (declare (optimize speed)
+           (type single-float min max))
   (+ min (* (- max min) (pcg:pcg-random-float% generator))))
 
 (defun random-element (generator sequence)
-  (declare (type sequence sequence))
+  (declare (optimize speed)
+           (type sequence sequence))
   (let ((len (length sequence)))
     (when (plusp len)
       (elt sequence (pcg:pcg-random-bounded% generator len)))))
