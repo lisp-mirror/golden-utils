@@ -42,8 +42,8 @@ indicating if the lookup was successful, such as with GETHASH."
 with the second value indicating if the lookup was successful, such as with
 GETHASH."
   (with-unique-names (found result)
-    `(mvlet ((,result ,found ,lookup)
-             (,var ,result))
+    `(mvlet* ((,result ,found ,lookup)
+              (,var ,result))
        (if ,found
            ,then
            ,else))))
