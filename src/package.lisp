@@ -166,10 +166,22 @@
    #:alist-rget
    #:alist-values
    #:alist->hash
-   #:alist->plist)
+   #:alist->plist
+   #:do-alist
+   #:do-alist-keys
+   #:do-alist-values
+   #:map-alist
+   #:map-alist-keys
+   #:map-alist-values)
 
   ;; Property lists
   (:export
+   #:do-plist
+   #:do-plist-keys
+   #:do-plist-values
+   #:map-plist
+   #:map-plist-keys
+   #:map-plist-values
    #:plist
    #:plist-p
    #:plist-get

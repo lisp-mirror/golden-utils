@@ -52,3 +52,29 @@ keyword symbols for its odd elements."
     (dolist (cell alist)
       (setf (href table (car cell)) (cdr cell)))
     table))
+
+(defmacro do-alist ((key value alist) &body body)
+  `(loop :for (,key . ,value) :in ,alist
+         :do (tagbody ,@body)))
+
+(defmacro do-alist-keys ((key alist) &body body)
+  (with-unique-names (value)
+    `(do-alist (,key ,value ,alist)
+       ,@body)))
+
+(defmacro do-alist-values ((value alist) &body body)
+  (with-unique-names (key)
+    `(do-alist (,key ,value ,alist)
+       ,@body)))
+
+(defun map-alist (fn alist)
+  (do-alist (key value alist)
+    (funcall fn key value)))
+
+(defun map-alist-keys (fn alist)
+  (do-alist (key value alist)
+    (funcall fn key)))
+
+(defun map-alist-values (fn alist)
+  (do-alist (key value alist)
+    (funcall fn value)))

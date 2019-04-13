@@ -59,3 +59,29 @@
               :do (setf (href table key) value))
         table)
       (error "~a is not a property list." plist)))
+
+(defmacro do-plist ((key value plist) &body body)
+  `(loop :for (,key ,value) :on ,plist :by #'cddr
+         :do (tagbody ,@body)))
+
+(defmacro do-plist-keys ((key plist) &body body)
+  (with-unique-names (value)
+    `(do-plist (,key ,value ,plist)
+       ,@body)))
+
+(defmacro do-plist-values ((value plist) &body body)
+  (with-unique-names (key)
+    `(do-plist (,key ,value ,plist)
+       ,@body)))
+
+(defun map-plist (fn plist)
+  (do-plist (key value plist)
+    (funcall fn key value)))
+
+(defun map-plist-keys (fn plist)
+  (do-plist (key value plist)
+    (funcall fn key)))
+
+(defun map-plist-values (fn plist)
+  (do-plist (key value plist)
+    (funcall fn value)))
