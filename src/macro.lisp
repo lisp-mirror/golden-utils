@@ -21,7 +21,7 @@
 `LOOKUP` is an expression that returns two values, with the second value
 indicating if the lookup was successful, such as with GETHASH."
   (with-unique-names (found)
-    `(multiple-value-bind (,var ,found) ,lookup
+    `(mvlet ((,var ,found ,lookup))
        (declare (ignorable ,var))
        (when ,found
          ,@body))))
@@ -31,7 +31,7 @@ indicating if the lookup was successful, such as with GETHASH."
 `LOOKUP` is an expression that returns two values, with the second value
 indicating if the lookup was successful, such as with GETHASH."
   (with-unique-names (found)
-    `(multiple-value-bind (,var ,found) ,lookup
+    `(mvlet ((,var ,found ,lookup))
        (declare (ignorable ,var))
        (unless ,found
          ,@body))))
@@ -42,11 +42,11 @@ indicating if the lookup was successful, such as with GETHASH."
 with the second value indicating if the lookup was successful, such as with
 GETHASH."
   (with-unique-names (found result)
-    `(multiple-value-bind (,result ,found) ,lookup
-       (let ((,var ,result))
-         (if ,found
-             ,then
-             ,else)))))
+    `(mvlet ((,result ,found ,lookup)
+             (,var ,result))
+       (if ,found
+           ,then
+           ,else))))
 
 (defmacro fn-> (function args values)
   "Declaim the `FTYPE` of function from `ARGS` to `VALUES`."

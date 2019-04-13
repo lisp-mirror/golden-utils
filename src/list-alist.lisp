@@ -50,5 +50,5 @@ keyword symbols for its odd elements."
   "Convert `ALIST` to a hash table."
   (let ((table (apply #'make-hash-table args)))
     (dolist (cell alist)
-      (setf (gethash (car cell) table) (cdr cell)))
+      (setf (href table (car cell)) (cdr cell)))
     table))

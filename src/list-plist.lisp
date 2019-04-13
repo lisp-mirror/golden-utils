@@ -56,6 +56,6 @@
   (if (plist-p plist)
       (let ((table (apply #'make-hash-table args)))
         (loop :for (key value) :on plist :by #'cddr
-              :do (setf (gethash key table) value))
+              :do (setf (href table key) value))
         table)
       (error "~a is not a property list." plist)))

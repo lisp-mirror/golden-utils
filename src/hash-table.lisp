@@ -4,7 +4,7 @@
   "Iterates over hash table `TABLE`, binding each key to `KEY`, and its value to
 `VALUE`."
   (with-unique-names (block-name)
-    (multiple-value-bind (body decls) (alexandria:parse-body body)
+    (mvlet ((body decls (parse-body body)))
       `(block ,block-name
          (maphash
           (lambda (,key ,value)
