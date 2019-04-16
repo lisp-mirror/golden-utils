@@ -53,6 +53,10 @@ GETHASH."
   `(declaim (ftype (function ,args ,values) ,function)))
 
 (defmacro while (predicate &body body)
-  "Loop until `PREDICATE` returns NIL."
+  "Loop while `PREDICATE` returns T."
   `(loop :while ,predicate
-         :do ,@body))
+         :do (tagbody ,@body)))
+
+(defmacro until (predicate &body body)
+  `(loop :until ,predicate
+         :do (tagbody ,@body)))

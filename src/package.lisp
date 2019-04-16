@@ -89,6 +89,7 @@
    #:fn->
    #:if-found
    #:unless-found
+   #:until
    #:when-found
    #:while)
 
