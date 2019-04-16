@@ -135,6 +135,7 @@
 
   ;; Strings
   (:export
+   #:string->keyword
    #:string-ends-with-p
    #:string-explode
    #:string-merge

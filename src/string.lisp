@@ -29,3 +29,6 @@
         (suffix-length (length suffix)))
     (when (<= suffix-length length)
       (string= suffix (subseq string (- length suffix-length) length)))))
+
+(defun string->keyword (string)
+  (format-symbol :keyword "~@:(~a~)" string))
