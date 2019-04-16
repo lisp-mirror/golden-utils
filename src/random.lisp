@@ -33,8 +33,6 @@
   (+ min (* (- max min) (pcg:pcg-random-float% generator))))
 
 (defun random-element (generator sequence)
-  (declare (optimize speed)
-           (type sequence sequence))
   (let ((len (length sequence)))
     (when (plusp len)
       (elt sequence (pcg:pcg-random-bounded% generator len)))))
