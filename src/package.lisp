@@ -139,7 +139,6 @@
    #:string-ends-with-p
    #:string-explode
    #:string-merge
-   #:string-split
    #:string-starts-with-p
    #:string-trim-whitespace)
 
