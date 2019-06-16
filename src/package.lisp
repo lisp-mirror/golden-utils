@@ -79,7 +79,6 @@
    #:throttle
    #:unique-name
    #:unsplice)
-  (:inherit #:arrow-macros)
 
   ;; Macros
   (:export

@@ -10,7 +10,6 @@
   :encoding :utf-8
   :depends-on (#:alexandria
                #:serapeum
-               #:arrow-macros
                #:split-sequence
                #:cl-pcg
                #:defpackage-plus)
