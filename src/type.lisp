@@ -1,4 +1,4 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (deftype b8 () '(signed-byte 8))
 

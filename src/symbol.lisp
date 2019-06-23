@@ -1,13 +1,15 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defun collect-symbols (&optional (package *package*))
   "Collect a list of all symbols of `PACKAGE`."
-  (collecting
+  (let (symbols)
     (do-symbols (symbol package)
-      (collect symbol))))
+      (push symbol symbols))
+    (nreverse symbols)))
 
 (defun collect-external-symbols (&optional (package *package*))
   "Collect a list of all external symbols of `PACKAGE`."
-  (collecting
+  (let (symbols)
     (do-external-symbols (symbol package)
-      (collect symbol))))
+      (push symbol symbols))
+    (nreverse symbols)))

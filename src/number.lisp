@@ -1,6 +1,7 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defun count-digits (integer)
+  "Return the number of digits of `INTEGER`."
   (check-type integer integer)
   (if (zerop integer)
       1

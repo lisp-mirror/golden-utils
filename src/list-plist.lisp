@@ -3,7 +3,7 @@
 ;;;; Note: Property lists in the context of this library are defined as a list
 ;;;; of an even number of elements, where even indices hold keyword symbols.
 
-(in-package :au)
+(in-package #:golden-utils)
 
 (deftype plist () '(satisfies plist-p))
 
@@ -56,32 +56,44 @@
   (if (plist-p plist)
       (let ((table (apply #'make-hash-table args)))
         (loop :for (key value) :on plist :by #'cddr
-              :do (setf (href table key) value))
+              :do (setf (gethash key table) value))
         table)
       (error "~a is not a property list." plist)))
 
 (defmacro do-plist ((key value plist) &body body)
+  "Iterate over the property list, `PLIST`, binding each key and value to `KEY`
+and `VALUE` respectively, performing `BODY`."
   `(loop :for (,key ,value) :on ,plist :by #'cddr
-         :do (tagbody ,@body)))
+         :do ,@body))
 
 (defmacro do-plist-keys ((key plist) &body body)
-  (with-unique-names (value)
+  "Iterate over the property list, `PLIST`, binding each key to `KEY`,
+performing `BODY`."
+  (alexandria:with-gensyms (value)
     `(do-plist (,key ,value ,plist)
        ,@body)))
 
 (defmacro do-plist-values ((value plist) &body body)
-  (with-unique-names (key)
+  "Iterate over the property list, `PLIST`, binding each value to `VALUE`,
+performing `BODY`."
+  (alexandria:with-gensyms (key)
     `(do-plist (,key ,value ,plist)
        ,@body)))
 
 (defun map-plist (fn plist)
+  "Map over the property list, `PLIST` applying `FN`, a function that takes 2
+arguments, for the key and value of each iteration."
   (do-plist (key value plist)
     (funcall fn key value)))
 
 (defun map-plist-keys (fn plist)
+  "Map over the property list, `PLIST` applying `FN`, a function that takes 1
+arguments for the key of each iteration."
   (do-plist (key value plist)
     (funcall fn key)))
 
 (defun map-plist-values (fn plist)
+  "Map over the property list, `PLIST` applying `FN`, a function that takes 1
+arguments for the value of each iteration."
   (do-plist (key value plist)
     (funcall fn value)))

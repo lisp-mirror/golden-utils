@@ -1,4 +1,4 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defun interleave (&rest lists)
   "Interleave the elements of `LISTS`."
@@ -22,6 +22,8 @@ repetitions allowed."
   (apply #'mapcar #'list lists))
 
 (defun tree-leaves (tree test result)
+  "Replace leaves of `TREE` that satisfy `TEST` with `RESULT`.
+From Let Over Lambda by Doug Hoyte."
   (when tree
     (if (listp tree)
         (cons (tree-leaves (car tree) test result)

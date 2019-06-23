@@ -1,4 +1,4 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defmacro with-file-input ((stream path) &body body)
   "Open the file at location `PATH` as input and perform `BODY`."
@@ -31,18 +31,6 @@ If the file does not exist, it is created."
                                   :if-does-not-exist :create
                                   :element-type 'octet)
      ,@body))
-
-(defun resolve-system-path (system &optional path)
-  "Resolve the absolute path of the filesystem where `PATH` is located, relative to the ASDF system,
-`SYSTEM`, or relative to the program location in the case of running a dumped
-Lisp image from the command line.
-Note: A dumped image must have either been created with UIOP:DUMP-IMAGE, or have
-manually set UIOP/IMAGE:*IMAGE-DUMPED-P* prior to dumping."
-  (if uiop/image:*image-dumped-p*
-      (truename (uiop/pathname:merge-pathnames*
-                 path
-                 (uiop:pathname-directory-pathname (uiop:argv0))))
-      (asdf/system:system-relative-pathname (asdf:find-system system) path)))
 
 (defun map-files (path function &key (test (constantly t)) (recursive-p t))
   "Map over all files located in the directory of `PATH`, applying `FUNCTION` to

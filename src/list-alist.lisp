@@ -1,7 +1,7 @@
 ;;;; Association lists.
 ;;;; Various functions dealing with association lists.
 
-(in-package :au)
+(in-package #:golden-utils)
 
 (deftype alist () '(satisfies alist-p))
 
@@ -43,38 +43,50 @@
 keyword symbols for its odd elements."
   (mapcan
    (lambda (x)
-     (list (make-keyword (car x)) (cdr x)))
-   alist))
+     (list (alexandria:make-keyword (car x)) (cdr x)))
+   (copy-list alist)))
 
 (defun alist->hash (alist &rest args)
   "Convert `ALIST` to a hash table."
   (let ((table (apply #'make-hash-table args)))
     (dolist (cell alist)
-      (setf (href table (car cell)) (cdr cell)))
+      (setf (gethash (car cell) table) (cdr cell)))
     table))
 
 (defmacro do-alist ((key value alist) &body body)
+  "Iterate over the association list, `ALIST`, binding each key and value to
+`KEY` and `VALUE` respectively, performing `BODY`."
   `(loop :for (,key . ,value) :in ,alist
-         :do (tagbody ,@body)))
+         :do ,@body))
 
 (defmacro do-alist-keys ((key alist) &body body)
-  (with-unique-names (value)
+  "Iterate over the association list, `ALIST`, binding each key to `KEY`,
+performing `BODY`."
+  (alexandria:with-gensyms (value)
     `(do-alist (,key ,value ,alist)
        ,@body)))
 
 (defmacro do-alist-values ((value alist) &body body)
-  (with-unique-names (key)
+  "Iterate over the association list, `ALIST`, binding each value to `VALUE`,
+performing `BODY`."
+  (alexandria:with-gensyms (key)
     `(do-alist (,key ,value ,alist)
        ,@body)))
 
 (defun map-alist (fn alist)
+  "Map over the association list, `ALIST` applying `FN`, a function that takes 2
+arguments, for the key and value of each iteration."
   (do-alist (key value alist)
     (funcall fn key value)))
 
 (defun map-alist-keys (fn alist)
+  "Map over the association list, `ALIST` applying `FN`, a function that takes 1
+arguments for the key of each iteration."
   (do-alist (key value alist)
     (funcall fn key)))
 
 (defun map-alist-values (fn alist)
+  "Map over the association list, `ALIST` applying `FN`, a function that takes 1
+arguments for the value of each iteration."
   (do-alist (key value alist)
     (funcall fn value)))

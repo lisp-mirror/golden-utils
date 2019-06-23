@@ -1,90 +1,13 @@
-(in-package :cl-user)
+(in-package #:cl-user)
 
-(defpackage+-1:defpackage+ #:golden-utils
+(defpackage #:golden-utils
   (:nicknames #:au)
   (:use #:cl)
-
-  ;; Third-party libraries
-  (:inherit-from
-   #:alexandria
-   #:appendf
-   #:clamp
-   #:compose
-   #:conjoin
-   #:copy-hash-table
-   #:copy-sequence
-   #:define-constant
-   #:deletef
-   #:disjoin
-   #:ensure-gethash
-   #:ensure-list
-   #:ensure-symbol
-   #:format-symbol
-   #:hash-table-keys
-   #:hash-table-values
-   #:if-let
-   #:iota
-   #:length=
-   #:lerp
-   #:make-keyword
-   #:map-combinations
-   #:map-product
-   #:mappend
-   #:once-only
-   #:parse-body
-   #:removef
-   #:reversef
-   #:rotate
-   #:shuffle
-   #:switch
-   #:symbolicate
-   #:type=
-   #:with-unique-names
-   #:when-let
-   #:when-let*)
-  (:inherit-from
-   #:serapeum
-   #:assort
-   #:batches
-   #:class-name-of
-   #:collecting
-   #:defalias
-   #:defplace
-   #:dict
-   #:dict*
-   #:drop
-   #:eval-always
-   #:file=
-   #:file-size
-   #:filter
-   #:filter-map
-   #:flip-hash-table
-   #:fmt
-   #:halves
-   #:href
-   #:href-default
-   #:merge-tables
-   #:mvlet
-   #:mvlet*
-   #:nlet
-   #:octet
-   #:op
-   #:partial
-   #:partition
-   #:path-join
-   #:repeat-sequence
-   #:split-sequence
-   #:string-contains-p
-   #:take
-   #:throttle
-   #:unique-name
-   #:unsplice)
 
   ;; Macros
   (:export
    #:define-printer
    #:defun-inline
-   #:defunits
    #:fn->
    #:if-found
    #:unless-found
@@ -96,7 +19,6 @@
   (:export
    #:define-pfun
    #:dlambda
-   #:hotpatch
    #:plambda
    #:self
    #:this
@@ -208,7 +130,6 @@
   (:export
    #:file->string
    #:map-files
-   #:resolve-system-path
    #:safe-read-file-form
    #:safe-read-file-forms
    #:string->file
@@ -223,14 +144,6 @@
    #:degrees->radians
    #:map-domain
    #:radians->degrees)
-
-  ;; Random
-  (:export
-   #:make-rng
-   #:random-boolean
-   #:random-int
-   #:random-float
-   #:random-element)
 
   ;; Misc
   (:export

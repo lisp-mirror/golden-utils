@@ -1,15 +1,15 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defmacro do-hash ((key value table &optional result) &body body)
   "Iterates over hash table `TABLE`, binding each key to `KEY`, and its value to
 `VALUE`."
-  (with-unique-names (block-name)
-    (mvlet ((body decls (parse-body body)))
+  (alexandria:with-gensyms (block-name)
+    (multiple-value-bind (body decls) (alexandria:parse-body body)
       `(block ,block-name
          (maphash
           (lambda (,key ,value)
             ,@decls
-            (tagbody ,@body))
+            ,@body)
           ,table)
          ,(when result
             `(let (,key ,value)
@@ -17,14 +17,14 @@
 
 (defmacro do-hash-keys ((key table) &body body)
   "Iterate over hash table `TABLE`, binding each key to `KEY`."
-  (with-unique-names (value)
+  (alexandria:with-gensyms (value)
     `(do-hash (,key ,value ,table)
        (declare (ignore ,value))
        ,@body)))
 
 (defmacro do-hash-values ((value table) &body body)
   "Iterate over hash table `TABLE`, binding each value to `VALUE`."
-  (with-unique-names (key)
+  (alexandria:with-gensyms (key)
     `(do-hash (,key ,value ,table)
        (declare (ignore ,key))
        ,@body)))
@@ -60,8 +60,18 @@ on each."
 
 (defun hash-keys (table)
   "Collect a list of all keys in the hash table `TABLE`."
-  (collecting (maphash-keys #'collect table)))
+  (let (keys)
+    (maphash-keys
+     (lambda (x)
+       (push x keys))
+     table)
+    (nreverse keys)))
 
 (defun hash-values (table)
   "Collect a list of all values in the hash table `TABLE."
-  (collecting (maphash-values #'collect table)))
+  (let (values)
+    (maphash-values
+     (lambda (x)
+       (push x values))
+     table)
+    (nreverse values)))

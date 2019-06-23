@@ -1,4 +1,4 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defmacro define-printer ((object stream &key (type t) identity) &body body)
   "Define a PRINT-OBJECT method for `OBJECT`."
@@ -8,7 +8,8 @@
 
 (defmacro defun-inline (name args &body body)
   "Conveniently define the function `NAME` and also inline it."
-  (mvlet ((body decls doc (parse-body body :documentation t)))
+  (multiple-value-bind (body decls doc)
+      (alexandria:parse-body body :documentation t)
     `(progn
        (declaim (inline ,name))
        (defun ,name ,args
@@ -20,8 +21,8 @@
   "If `LOOKUP` is successful, perform `BODY` with `VAR` bound to the result.
 `LOOKUP` is an expression that returns two values, with the second value
 indicating if the lookup was successful, such as with GETHASH."
-  (with-unique-names (found)
-    `(mvlet ((,var ,found ,lookup))
+  (alexandria:with-gensyms (found)
+    `(multiple-value-bind (,var ,found) ,lookup
        (declare (ignorable ,var))
        (when ,found
          ,@body))))
@@ -30,8 +31,8 @@ indicating if the lookup was successful, such as with GETHASH."
   "If `LOOKUP` is unsuccessful, perform `BODY` with `VAR` bound to the result.
 `LOOKUP` is an expression that returns two values, with the second value
 indicating if the lookup was successful, such as with GETHASH."
-  (with-unique-names (found)
-    `(mvlet ((,var ,found ,lookup))
+  (alexandria:with-gensyms (found)
+    `(multiple-value-bind (,var ,found) ,lookup
        (declare (ignorable ,var))
        (unless ,found
          ,@body))))
@@ -41,22 +42,21 @@ indicating if the lookup was successful, such as with GETHASH."
 `VAR` bound to the result. `LOOKUP` is an expression that returns two values,
 with the second value indicating if the lookup was successful, such as with
 GETHASH."
-  (with-unique-names (found result)
-    `(mvlet* ((,result ,found ,lookup)
-              (,var ,result))
-       (if ,found
-           ,then
-           ,else))))
+  (alexandria:with-gensyms (found result)
+    `(multiple-value-bind (,result ,found) ,lookup
+       (let ((,var ,result))
+         (if ,found ,then ,else)))))
 
 (defmacro fn-> (function args values)
   "Declaim the `FTYPE` of function from `ARGS` to `VALUES`."
   `(declaim (ftype (function ,args ,values) ,function)))
 
 (defmacro while (predicate &body body)
-  "Loop while `PREDICATE` returns T."
+  "Loop while `PREDICATE` is satisfied."
   `(loop :while ,predicate
-         :do (tagbody ,@body)))
+         :do ,@body))
 
 (defmacro until (predicate &body body)
+  "Loop until `PREDICATE` is satisfied."
   `(loop :until ,predicate
-         :do (tagbody ,@body)))
+         :do ,@body))

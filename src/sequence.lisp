@@ -1,4 +1,4 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defun flatten (sequence)
   "Traverses a sequence in order, collecting non-nil values into a list. This is

@@ -1,4 +1,4 @@
-(in-package :au)
+(in-package #:golden-utils)
 
 (defun string-merge (&rest strings)
   "Merge `STRINGS` into a single string."
@@ -27,4 +27,5 @@
       (string= suffix (subseq string (- length suffix-length) length)))))
 
 (defun string->keyword (string)
-  (format-symbol :keyword "~@:(~a~)" string))
+  "Convert `STRING` to a keyword symbol."
+  (alexandria:format-symbol :keyword "~@:(~a~)" string))
