@@ -2,6 +2,8 @@
 
 (deftype b8 () '(signed-byte 8))
 
+(deftype octet () '(unsigned-byte 8))
+
 (deftype ub8 () '(unsigned-byte 8))
 
 (deftype b16 () '(signed-byte 16))

@@ -60,3 +60,24 @@ GETHASH."
   "Loop until `PREDICATE` is satisfied."
   `(loop :until ,predicate
          :do ,@body))
+
+(defmacro mvlet ((&rest binds) &body body)
+  (destructuring-bind (&optional car . cdr) binds
+    (typecase car
+      (null
+       `(progn ,@body))
+      (list
+       (case (length car)
+         (0 (error "Missing variable in binding list."))
+         ((1 2) `(let (,car) (mvlet ,cdr ,@body)))
+         (t `(multiple-value-bind ,(butlast car) ,(car (last car))
+               (declare (ignorable ,@(butlast car)))
+               (mvlet ,cdr ,@body)))))
+      (symbol
+       `(let (,car)
+          (declare (ignorable ,car))
+          (mvlet ,cdr ,@body))))))
+
+(defmacro eval-always (&body body)
+  `(eval-when (:compile-toplevel :load-toplevel :execute)
+     ,@body))

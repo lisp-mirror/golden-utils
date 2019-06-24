@@ -1,6 +1,6 @@
 (in-package #:golden-utils)
 
-(defun flatten (sequence)
+(defun flatten-tree (sequence)
   "Traverses a sequence in order, collecting non-nil values into a list. This is
 different than Alexandria's version in that this also works for vectors or
 hybrid sequences."
@@ -22,7 +22,7 @@ hybrid sequences."
 be a specialized array of element-type `TYPE`."
   (flet ((%coerce (sequence)
            (mapcar (lambda (x) (coerce x type))
-                   (remove-if (complement #'realp) (flatten sequence)))))
+                   (remove-if (complement #'realp) (flatten-tree sequence)))))
     (let ((sequence (%coerce sequence)))
       (make-array (length sequence)
                   :element-type type

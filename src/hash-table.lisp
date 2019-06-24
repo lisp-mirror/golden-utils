@@ -44,20 +44,6 @@ list."
       (setf result (list* key value result)))
     result))
 
-(defun maphash-keys (fn table)
-  "Iterate over the keys of the hash table `TABLE`, calling the function `FN` on
-each."
-  (do-hash (key value table)
-    (declare (ignore value))
-    (funcall fn key)))
-
-(defun maphash-values (fn table)
-  "Iterate over the values of the hash table `TABLE`, calling the function `FN`
-on each."
-  (do-hash (key value table)
-    (declare (ignore key))
-    (funcall fn value)))
-
 (defun hash-keys (table)
   "Collect a list of all keys in the hash table `TABLE`."
   (let (keys)
@@ -75,3 +61,39 @@ on each."
        (push x values))
      table)
     (nreverse values)))
+
+(defun hash-merge (table &rest tables)
+  (let ((size (reduce #'+ tables
+                      :key #'hash-table-count
+                      :initial-value (hash-table-count table))))
+    (reduce
+     (lambda (table1 table2)
+       (unless (eql (hash-table-test table1)
+                    (hash-table-test table2))
+         (error "Hash tables must have the same test function."))
+       (do-hash (k v table2)
+         (setf (gethash k table1) v))
+       table1)
+     tables
+     :initial-value (alexandria:copy-hash-table table :size size))))
+
+(defun dict (&rest keys/values)
+  (let* ((length (length keys/values))
+         (test (if (oddp length)
+                   (pop keys/values)
+                   #'eql)))
+    (alexandria:plist-hash-table keys/values
+                                 :test test
+                                 :size (truncate length 2))))
+
+(defun href (table &rest keys)
+  (loop :for (key . rest) :on keys
+        :unless rest
+          :return (gethash key table)
+        :do (setf table (gethash key table))))
+
+(defun (setf href) (value table &rest keys)
+  (loop :for (key . rest) :on keys
+        :unless rest
+          :return (setf (gethash key table) value)
+        :do (setf table (gethash key table))))

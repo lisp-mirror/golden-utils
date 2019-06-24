@@ -1,15 +1,16 @@
 (in-package #:cl-user)
 
 (defpackage #:golden-utils
-  (:nicknames #:au)
   (:use #:cl)
 
   ;; Macros
   (:export
    #:define-printer
    #:defun-inline
+   #:eval-always
    #:fn->
    #:if-found
+   #:mvlet
    #:unless-found
    #:until
    #:when-found
@@ -29,6 +30,7 @@
    #:b8
    #:b16
    #:b32
+   #:octet
    #:ub8
    #:ub16
    #:ub32)
@@ -36,7 +38,8 @@
   ;; Symbols
   (:export
    #:collect-external-symbols
-   #:collect-symbols)
+   #:collect-symbols
+   #:make-keyword)
 
   ;; Numbers
   (:export
@@ -67,7 +70,7 @@
   (:export
    #:do-seq
    #:enumerate
-   #:flatten
+   #:flatten-tree
    #:flatten-numbers)
 
   ;; Lists
@@ -116,12 +119,13 @@
 
   ;; Hash tables
   (:export
+   #:dict
    #:do-hash
    #:do-hash-keys
    #:do-hash-values
-   #:maphash-keys
-   #:maphash-values
+   #:href
    #:hash-keys
+   #:hash-merge
    #:hash-values
    #:hash->alist
    #:hash->plist)
