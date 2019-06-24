@@ -81,7 +81,7 @@ list."
   (let* ((length (length keys/values))
          (test (if (oddp length)
                    (pop keys/values)
-                   #'eql)))
+                   #'eq)))
     (alexandria:plist-hash-table keys/values
                                  :test test
                                  :size (truncate length 2))))
