@@ -47,7 +47,7 @@ list."
 (defun hash-keys (table)
   "Collect a list of all keys in the hash table `TABLE`."
   (let (keys)
-    (maphash-keys
+    (alexandria:maphash-keys
      (lambda (x)
        (push x keys))
      table)
@@ -56,7 +56,7 @@ list."
 (defun hash-values (table)
   "Collect a list of all values in the hash table `TABLE."
   (let (values)
-    (maphash-values
+    (alexandria:maphash-values
      (lambda (x)
        (push x values))
      table)
