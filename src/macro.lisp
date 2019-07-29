@@ -99,8 +99,10 @@ GETHASH."
       (let (new-bindings)
         `(mvlet* (,@bindings)
            (let (,@(progn
-                     (do-hash (k v mapping)
-                       (push (list k v) new-bindings))
+                     (maphash
+                      (lambda (k v)
+                        (push (list k v) new-bindings))
+                      mapping)
                      (nreverse new-bindings)))
              (declare (ignorable ,@(hash-keys mapping)))
              ,@body))))))
