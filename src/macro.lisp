@@ -69,14 +69,14 @@ GETHASH."
       (list
        (case (length car)
          (0 (error "Missing variable in binding list."))
-         ((1 2) `(let (,car) (mvlet ,cdr ,@body)))
+         ((1 2) `(let (,car) (mvlet* ,cdr ,@body)))
          (t `(multiple-value-bind ,(butlast car) ,(car (last car))
                (declare (ignorable ,@(butlast car)))
-               (mvlet ,cdr ,@body)))))
+               (mvlet* ,cdr ,@body)))))
       (symbol
        `(let (,car)
           (declare (ignorable ,car))
-          (mvlet ,cdr ,@body))))))
+          (mvlet* ,cdr ,@body))))))
 
 (defmacro mvlet ((&rest bindings) &body body)
   (labels ((process-list-binding (table binding)
