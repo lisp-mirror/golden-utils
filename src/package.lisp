@@ -11,6 +11,7 @@
    #:fn->
    #:if-found
    #:mvlet
+   #:mvlet*
    #:unless-found
    #:until
    #:when-found

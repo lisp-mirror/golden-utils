@@ -61,8 +61,8 @@ GETHASH."
   `(loop :until ,predicate
          :do ,@body))
 
-(defmacro mvlet ((&rest binds) &body body)
-  (destructuring-bind (&optional car . cdr) binds
+(defmacro mvlet* ((&rest bindings) &body body)
+  (destructuring-bind (&optional car . cdr) bindings
     (typecase car
       (null
        `(progn ,@body))
@@ -77,6 +77,33 @@ GETHASH."
        `(let (,car)
           (declare (ignorable ,car))
           (mvlet ,cdr ,@body))))))
+
+(defmacro mvlet ((&rest bindings) &body body)
+  (labels ((process-list-binding (table binding)
+             (loop :for symbol :in (butlast binding)
+                   :collect (setf (href table symbol)
+                                  (gensym (symbol-name symbol)))
+                     :into new-symbols
+                   :finally (return (append new-symbols (last binding)))))
+           (process-symbol-binding (table binding)
+             (setf (href table binding) (gensym (symbol-name binding))))
+           (transform-bindings (bindings)
+             (loop :with table = (dict)
+                   :for binding :in bindings
+                   :collect (typecase binding
+                              (list (process-list-binding table binding))
+                              (symbol (process-symbol-binding table binding)))
+                     :into new-bindings
+                   :finally (return (values new-bindings table)))))
+    (multiple-value-bind (bindings mapping) (transform-bindings bindings)
+      (let (new-bindings)
+        `(mvlet* (,@bindings)
+           (let (,@(progn
+                     (do-hash (k v mapping)
+                       (push (list k v) new-bindings))
+                     (nreverse new-bindings)))
+             (declare (ignorable ,@(hash-keys mapping)))
+             ,@body))))))
 
 (defmacro eval-always (&body body)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
