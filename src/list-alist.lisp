@@ -40,7 +40,7 @@
 
 (defun alist->plist (alist)
   "Convert `ALIST` to a property list. A property list in this context has
-keyword symbols for its odd elements."
+keyword symbols for its keys."
   (mapcan
    (lambda (x)
      (list (alexandria:make-keyword (car x)) (cdr x)))
