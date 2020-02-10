@@ -14,5 +14,9 @@
 
 (deftype ub32 () '(unsigned-byte 32))
 
+(deftype b64 () '(signed-byte 64))
+
+(deftype ub64 () '(unsigned-byte 64))
+
 (deftype fn-> (args values)
   `(function ,args ,values))

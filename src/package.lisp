@@ -31,10 +31,12 @@
    #:b8
    #:b16
    #:b32
+   #:b64
    #:octet
    #:ub8
    #:ub16
-   #:ub32)
+   #:ub32
+   #:ub64)
 
   ;; Symbols
   (:export
