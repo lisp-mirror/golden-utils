@@ -29,16 +29,26 @@
   ;; Types
   (:export
    #:b8
+   #:b8-array
    #:b16
+   #:b16-array
    #:b24
+   #:b24-array
    #:b32
+   #:b32-array
    #:b64
+   #:b64-array
    #:octet
    #:ub8
+   #:ub8-array
    #:ub16
+   #:ub16-array
    #:ub24
+   #:ub24-array
    #:ub32
-   #:ub64)
+   #:ub32-array
+   #:ub64
+   #:ub64-array)
 
   ;; Symbols
   (:export
