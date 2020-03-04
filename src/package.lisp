@@ -62,6 +62,10 @@
    #:hex-char-p
    #:null-char-p)
 
+  ;; Arrays
+  (:export
+   #:make-ub8-array)
+
   ;; Strings
   (:export
    #:string->keyword

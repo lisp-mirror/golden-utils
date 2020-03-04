@@ -19,6 +19,7 @@
    (:file "symbol")
    (:file "number")
    (:file "character")
+   (:file "array")
    (:file "string")
    (:file "sequence")
    (:file "list")
