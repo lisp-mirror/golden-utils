@@ -1,4 +1,4 @@
-(in-package #:golden-utils)
+(in-package #:net.mfiano.lisp.golden-utils)
 
 (deftype octet () '(unsigned-byte 8))
 

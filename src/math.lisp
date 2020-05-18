@@ -1,4 +1,4 @@
-(in-package #:golden-utils)
+(in-package #:net.mfiano.lisp.golden-utils)
 
 (defun-inline degrees->radians (degrees)
   "Convert `DEGREES` to radians."

@@ -1,14 +1,13 @@
-(asdf:defsystem #:golden-utils
+(asdf:defsystem #:net.mfiano.lisp.golden-utils
   :description "A utility library."
-  :author ("Michael Fiano <mail@michaelfiano.com>")
-  :maintainer "Michael Fiano <mail@michaelfiano.com>"
+  :author ("Michael Fiano <mail@mfiano.net>")
   :license "MIT"
-  :homepage "https://github.com/mfiano/golden-utils"
+  :homepage "https://mfiano.net/projects/golden-utils"
   :bug-tracker "https://github.com/mfiano/golden-utils/issues"
-  :source-control (:git "https://github.com/mfiano/golden-utils.git")
+  :source-control (:git "https://github.com/mfiano/golden-utils")
   :encoding :utf-8
-  :depends-on (#:uiop
-               #:alexandria)
+  :depends-on (#:alexandria
+               #:uiop)
   :pathname "src"
   :serial t
   :components

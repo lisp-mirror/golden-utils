@@ -1,8 +1,10 @@
 (in-package #:cl-user)
 
-(defpackage #:golden-utils
+(uiop:define-package #:net.mfiano.lisp.golden-utils
   (:use #:cl)
-
+  (:mix-reexport #:alexandria)
+  (:shadow
+   #:make-keyword)
   ;; Macros
   (:export
    #:define-printer
@@ -16,7 +18,6 @@
    #:until
    #:when-found
    #:while)
-
   ;; Closures
   (:export
    #:define-pfun
@@ -25,7 +26,6 @@
    #:self
    #:this
    #:with-pvars)
-
   ;; Types
   (:export
    #:b8
@@ -49,17 +49,14 @@
    #:ub32-array
    #:ub64
    #:ub64-array)
-
   ;; Symbols
   (:export
    #:collect-external-symbols
    #:collect-symbols
    #:make-keyword)
-
   ;; Numbers
   (:export
    #:count-digits)
-
   ;; Characters
   (:export
    #:ascii-alphanumeric-p
@@ -71,11 +68,9 @@
    #:ascii-uppercase-p
    #:hex-char-p
    #:null-char-p)
-
   ;; Arrays
   (:export
    #:make-ub8-array)
-
   ;; Strings
   (:export
    #:string->keyword
@@ -84,21 +79,18 @@
    #:string-merge
    #:string-starts-with-p
    #:string-trim-whitespace)
-
   ;; Sequences
   (:export
    #:do-seq
    #:enumerate
    #:flatten-tree
    #:flatten-numbers)
-
   ;; Lists
   (:export
    #:combinations/repetition
    #:interleave
    #:tree-leaves
    #:zip)
-
   ;; Association lists
   (:export
    #:alist
@@ -117,7 +109,6 @@
    #:map-alist
    #:map-alist-keys
    #:map-alist-values)
-
   ;; Property lists
   (:export
    #:do-plist
@@ -135,7 +126,6 @@
    #:plist-values
    #:plist->alist
    #:plist->hash)
-
   ;; Hash tables
   (:export
    #:dict
@@ -148,7 +138,6 @@
    #:hash-values
    #:hash->alist
    #:hash->plist)
-
   ;; Filesystem
   (:export
    #:file->string
@@ -160,14 +149,12 @@
    #:with-binary-output
    #:with-file-input
    #:with-file-output)
-
   ;; Math
   (:export
    #:average
    #:degrees->radians
    #:map-domain
    #:radians->degrees)
-
   ;; Misc
   (:export
    #:noop))

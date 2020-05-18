@@ -3,7 +3,7 @@
 ;;;; Note: Property lists in the context of this library are defined as a list
 ;;;; of an even number of elements, where even indices hold keyword symbols.
 
-(in-package #:golden-utils)
+(in-package #:net.mfiano.lisp.golden-utils)
 
 (deftype plist () '(satisfies plist-p))
 

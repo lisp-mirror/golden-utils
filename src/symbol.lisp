@@ -1,4 +1,4 @@
-(in-package #:golden-utils)
+(in-package #:net.mfiano.lisp.golden-utils)
 
 (defun collect-symbols (&optional (package *package*))
   "Collect a list of all symbols of `PACKAGE`."

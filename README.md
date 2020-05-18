@@ -9,7 +9,7 @@ A collection of personal utilities that have been found useful.
 ## Install
 
 ```lisp
-(ql:quickload :golden-utils)
+(ql:quickload :net.mfiano.lisp.golden-utils)
 ```
 
 ## Usage
@@ -18,6 +18,6 @@ TODO
 
 ## License
 
-Copyright © 2017-2018 [Michael Fiano](mailto:mail@michaelfiano.com).
+Copyright © 2017-2020 Michael Fiano <mail@mfiano.net>
 
 Licensed under the MIT License.
