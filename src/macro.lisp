@@ -65,7 +65,7 @@ GETHASH."
   (destructuring-bind (&optional car . cdr) bindings
     (typecase car
       (null
-       `(progn ,@body))
+       `(locally ,@body))
       (list
        (case (length car)
          (0 (error "Missing variable in binding list."))
