@@ -17,7 +17,8 @@
    #:unless-found
    #:until
    #:when-found
-   #:while)
+   #:while
+   #:with-temp-package)
   ;; Closures
   (:export
    #:define-pfun

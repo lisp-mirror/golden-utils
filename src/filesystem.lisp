@@ -47,25 +47,33 @@ into sub-directories of `PATH` recursively."
      (uiop/pathname:ensure-directory-pathname path)
      t recursive-p #'process-files)))
 
-(defun safe-read-file-form (path &key (package :cl))
+(defun safe-read-file-form (path &key package)
   "Read the first form of the file located at `PATH`, with *PACKAGE* bound to
 `PACKAGE`."
   (with-standard-io-syntax
-    (let ((*package* (find-package package))
-          (*read-eval* nil))
+    (let ((*read-eval* nil))
       (with-open-file (in path)
-        (read in)))))
+        (if package
+            (let ((*package* (find-package package)))
+              (read in))
+            (with-temp-package
+              (read in)))))))
 
-(defun safe-read-file-forms (path &key (package :cl))
+(defun safe-read-file-forms (path &key package)
   "Read all forms of the file located at `PATH`, with *PACKAGE* bound to
 `PACKAGE`."
   (with-standard-io-syntax
-    (let ((*package* (find-package package))
-          (*read-eval* nil))
-      (with-open-file (in path)
-        (loop :for form = (read in nil in)
-              :until (eq form in)
-              :collect form)))))
+    (flet ((%read (in)
+             (if package
+                 (let ((*package* (find-package package)))
+                   (read in nil in))
+                 (with-temp-package
+                   (read in nil in)))))
+      (let ((*read-eval* nil))
+        (with-open-file (in path)
+          (loop :for form = (%read in)
+                :until (eq form in)
+                :collect form))))))
 
 (defun file->string (path)
   "Read the file located at `PATH` into a string."
