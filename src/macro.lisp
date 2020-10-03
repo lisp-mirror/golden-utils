@@ -37,7 +37,7 @@ indicating if the lookup was successful, such as with GETHASH."
        (unless ,found
          ,@body))))
 
-(defmacro if-found ((var lookup) then else)
+(defmacro if-found ((var lookup) &body (then else))
   "Depending if `LOOKUP` is successful or not, perform `THEN` or `ELSE` with
 `VAR` bound to the result. `LOOKUP` is an expression that returns two values,
 with the second value indicating if the lookup was successful, such as with
@@ -45,6 +45,7 @@ GETHASH."
   (alexandria:with-gensyms (found result)
     `(multiple-value-bind (,result ,found) ,lookup
        (let ((,var ,result))
+         (declare (ignorable ,var))
          (if ,found ,then ,else)))))
 
 (defmacro fn-> (function args values)
