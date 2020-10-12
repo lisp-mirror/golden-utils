@@ -1,7 +1,5 @@
 ;;;; Property lists
 ;;;; Various functions dealing with property lists.
-;;;; Note: Property lists in the context of this library are defined as a list
-;;;; of an even number of elements, where even indices hold keyword symbols.
 
 (in-package #:net.mfiano.lisp.golden-utils)
 
@@ -10,10 +8,7 @@
 (defun plist-p (item)
   "Check whether or not `ITEM` is a property list."
   (and (listp item)
-       (evenp (length item))
-       (every #'keywordp
-              (loop :for element :in item :by #'cddr
-                    :collect element))))
+       (evenp (length item))))
 
 (defun plist-get (plist key)
   "Get the value associated with `KEY` in `PLIST`."
