@@ -86,6 +86,13 @@ list."
                                  :test test
                                  :size (truncate length 2))))
 
+(defun expand-href (table keys)
+  (reduce
+   (lambda (table key)
+     `(gethash ,key ,table))
+   keys
+   :initial-value table))
+
 (defun href (table &rest keys)
   (loop :for (key . rest) :on keys
         :unless rest
@@ -97,3 +104,9 @@ list."
         :unless rest
           :return (setf (gethash key table) value)
         :do (setf table (gethash key table))))
+
+(define-compiler-macro href (table &rest keys)
+  (expand-href table keys))
+
+(define-compiler-macro (setf href) (value table &rest keys)
+  `(setf ,(expand-href table keys) ,value))
