@@ -39,6 +39,8 @@
    #:b32-array
    #:b64
    #:b64-array
+   #:f32
+   #:f64
    #:octet
    #:ub8
    #:ub8-array

@@ -2,6 +2,10 @@
 
 (deftype octet () '(unsigned-byte 8))
 
+(deftype f32 () 'single-float)
+
+(deftype f64 () 'double-float)
+
 (deftype b8 () '(signed-byte 8))
 
 (deftype b8-array (size) `(simple-array (signed-byte 8) (,size)))
