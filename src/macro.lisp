@@ -55,7 +55,7 @@ GETHASH."
 (defmacro while (predicate &body body)
   "Loop while `PREDICATE` is satisfied."
   `(loop :while ,predicate
-         :do ,@body))
+         :do (progn ,@body)))
 
 (defmacro until (predicate &body body)
   "Loop until `PREDICATE` is satisfied."
