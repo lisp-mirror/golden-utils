@@ -12,7 +12,6 @@
   :serial t
   :components
   ((:file "package")
-   (:file "macro")
    (:file "closure")
    (:file "type")
    (:file "symbol")
@@ -25,6 +24,7 @@
    (:file "list-alist")
    (:file "list-plist")
    (:file "hash-table")
+   (:file "macro")
    (:file "filesystem")
    (:file "math")
    (:file "misc")))
