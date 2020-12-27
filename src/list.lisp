@@ -1,4 +1,4 @@
-(in-package #:net.mfiano.lisp.golden-utils)
+(in-package #:golden-utils)
 
 (defun interleave (&rest lists)
   "Interleave the elements of `LISTS`."

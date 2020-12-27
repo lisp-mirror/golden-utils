@@ -1,6 +1,6 @@
 (in-package #:cl-user)
 
-(uiop:define-package #:net.mfiano.lisp.golden-utils
+(uiop:define-package #:golden-utils
   (:use #:cl)
   (:mix-reexport #:alexandria)
   (:shadow

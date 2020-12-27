@@ -1,4 +1,4 @@
-(asdf:defsystem #:net.mfiano.lisp.golden-utils
+(asdf:defsystem #:golden-utils
   :description "A utility library."
   :author ("Michael Fiano <mail@mfiano.net>")
   :license "MIT"

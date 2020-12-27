@@ -1,4 +1,4 @@
-(in-package #:net.mfiano.lisp.golden-utils)
+(in-package #:golden-utils)
 
 (defun ascii-char-p (char)
   "Check if the character `CHAR` is an ASCII character."

@@ -1,4 +1,4 @@
-(in-package #:net.mfiano.lisp.golden-utils)
+(in-package #:golden-utils)
 
 (defun count-digits (integer)
   "Return the number of digits of `INTEGER`."

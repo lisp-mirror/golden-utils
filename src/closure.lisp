@@ -1,4 +1,4 @@
-(in-package #:net.mfiano.lisp.golden-utils)
+(in-package #:golden-utils)
 
 ;;; The following is an implementation of "Pandoric Macros", documented by Doug
 ;;; Hoyte in "Let Over Lambda". Some minor improvements and style changes are

@@ -9,7 +9,7 @@ A collection of personal utilities that have been found useful.
 ## Install
 
 ```lisp
-(ql:quickload :net.mfiano.lisp.golden-utils)
+(ql:quickload :golden-utils)
 ```
 
 ## Usage
