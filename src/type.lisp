@@ -2,11 +2,11 @@
 
 (deftype octet () '(unsigned-byte 8))
 
-(deftype f32 () 'single-float)
+(deftype f32 (&optional low high) `(single-float ,low ,high))
 
 (deftype f32a (&optional length) `(simple-array f32 (,length)))
 
-(deftype f64 () 'double-float)
+(deftype f64 (&optional low high) `(double-float ,low ,high))
 
 (deftype f64a (&optional length) `(simple-array f64 (,length)))
 
