@@ -75,7 +75,16 @@
    #:null-char-p)
   ;; Arrays
   (:export
-   #:make-ub8-array)
+   #:make-b8-array
+   #:make-b16-array
+   #:make-b24-array
+   #:make-b32-array
+   #:make-f32-array
+   #:make-f64-array
+   #:make-ub8-array
+   #:make-ub16-array
+   #:make-ub24-array
+   #:make-ub32-array)
   ;; Strings
   (:export
    #:string->keyword
