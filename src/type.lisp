@@ -4,47 +4,51 @@
 
 (deftype f32 () 'single-float)
 
+(deftype f32a (&optional length) `(simple-array f32 (,length)))
+
 (deftype f64 () 'double-float)
+
+(deftype f64a (&optional length) `(simple-array f64 (,length)))
 
 (deftype b8 () '(signed-byte 8))
 
-(deftype b8-array (size) `(simple-array (signed-byte 8) (,size)))
+(deftype b8a (&optional length) `(simple-array b8 (,length)))
 
 (deftype b16 () '(signed-byte 16))
 
-(deftype b16-array (size) `(simple-array (signed-byte 16) (,size)))
+(deftype b16a (&optional length) `(simple-array b16 (,length)))
 
 (deftype b24 () '(signed-byte 24))
 
-(deftype b24-array (size) `(simple-array (signed-byte 24) (,size)))
+(deftype b24a (&optional length) `(simple-array b24 (,length)))
 
 (deftype b32 () '(signed-byte 32))
 
-(deftype b32-array (size) `(simple-array (signed-byte 32) (,size)))
+(deftype b32a (&optional length) `(simple-array b32 (,length)))
 
 (deftype b64 () '(signed-byte 64))
 
-(deftype b64-array (size) `(simple-array (signed-byte 64) (,size)))
+(deftype b64a (&optional length) `(simple-array b64 (,length)))
 
 (deftype ub8 () '(unsigned-byte 8))
 
-(deftype ub8-array (size) `(simple-array (unsigned-byte 8) (,size)))
+(deftype ub8a (&optional length) `(simple-array ub8 (,length)))
 
 (deftype ub16 () '(unsigned-byte 16))
 
-(deftype ub16-array (size) `(simple-array (unsigned-byte 16) (,size)))
+(deftype ub16a (&optional length) `(simple-array ub16 (,length)))
 
 (deftype ub24 () '(unsigned-byte 24))
 
-(deftype ub24-array (size) `(simple-array (unsigned-byte 24) (,size)))
+(deftype ub24a (&optional length) `(simple-array ub24 (,length)))
 
 (deftype ub32 () '(unsigned-byte 32))
 
-(deftype ub32-array (size) `(simple-array (unsigned-byte 32) (,size)))
+(deftype ub32a (&optional length) `(simple-array ub32 (,length)))
 
 (deftype ub64 () '(unsigned-byte 64))
 
-(deftype ub64-array (size) `(simple-array (unsigned-byte 64) (,size)))
+(deftype ub64a (&optional length) `(simple-array ub64 (,length)))
 
 (deftype fn-> (args values)
   `(function ,args ,values))

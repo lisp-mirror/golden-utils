@@ -30,28 +30,30 @@
   ;; Types
   (:export
    #:b8
-   #:b8-array
+   #:b8a
    #:b16
-   #:b16-array
+   #:b16a
    #:b24
-   #:b24-array
+   #:b24a
    #:b32
-   #:b32-array
+   #:b32a
    #:b64
-   #:b64-array
+   #:b64a
    #:f32
+   #:f32a
    #:f64
+   #:f64a
    #:octet
    #:ub8
-   #:ub8-array
+   #:ub8a
    #:ub16
-   #:ub16-array
+   #:ub16a
    #:ub24
-   #:ub24-array
+   #:ub24a
    #:ub32
-   #:ub32-array
+   #:ub32a
    #:ub64
-   #:ub64-array)
+   #:ub64a)
   ;; Symbols
   (:export
    #:collect-external-symbols
