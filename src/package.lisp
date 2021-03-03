@@ -44,6 +44,7 @@
    #:f64
    #:f64a
    #:octet
+   #:octet-vector
    #:ub8
    #:ub8a
    #:ub16

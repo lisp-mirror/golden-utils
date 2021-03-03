@@ -2,6 +2,9 @@
 
 (deftype octet () '(unsigned-byte 8))
 
+(deftype octet-vector (&optional length)
+  `(simple-array octet ,(if (integerp length) `(,length) length)))
+
 (deftype f32 (&optional low high) `(single-float ,low ,high))
 
 (deftype f32a (&optional length) `(simple-array f32 (,length)))
