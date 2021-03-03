@@ -81,6 +81,7 @@
    #:make-b24-array
    #:make-b32-array
    #:make-f32-array
+   #:make-fixnum-array
    #:make-f64-array
    #:make-ub8-array
    #:make-ub16-array

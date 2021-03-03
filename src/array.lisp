@@ -32,6 +32,10 @@
 (defun make-ub32-array (size &optional (initial-element 0))
   (make-array size :element-type 'ub32 :initial-element initial-element))
 
+(declaim (inline make-fixnum-array))
+(defun make-fixnum-array (size &optional (initial-element 0))
+  (make-array size :element-type 'fixnum :initial-element initial-element))
+
 (declaim (inline make-f32-array))
 (defun make-f32-array (size &optional (initial-element 0f0))
   (make-array size :element-type 'f32 :initial-element initial-element))
