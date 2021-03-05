@@ -1,14 +1,16 @@
 (in-package #:golden-utils)
 
-(defun-inline degrees->radians (degrees)
+(declaim (inline degrees->radians))
+(defun degrees->radians (degrees)
   "Convert `DEGREES` to radians."
-  (* degrees (/ pi 180)))
+  (* degrees #.(/ pi 180)))
 
-(defun-inline radians->degrees (radians)
+(declaim (inline radians->degrees))
+(defun radians->degrees (radians)
   "Convert `RADIANS` to degrees."
-  (* radians (/ 180 pi)))
+  (* radians #.(/ 180 pi)))
 
-(defun-inline map-domain (source-min source-max dest-min dest-max value)
+(defun map-domain (source-min source-max dest-min dest-max value)
   "Map `VALUE` from the domain denoted by `SOURCE-MIN` and `SOURCE-MAX` to the
 domain denoted by `DEST-MIN` and `DEST-MAX`."
   (alexandria:lerp (/ (- value source-min)
@@ -16,6 +18,6 @@ domain denoted by `DEST-MIN` and `DEST-MAX`."
                    dest-min
                    dest-max))
 
-(defun-inline average (&rest numbers)
+(defun average (&rest numbers)
   "Calculate the mean average of `NUMBERS`, a list of numbers."
-  (/ (apply #'+ numbers) (length numbers)))
+  (/ (reduce #'+ numbers) (length numbers)))
