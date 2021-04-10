@@ -43,6 +43,7 @@
    #:f32a
    #:f64
    #:f64a
+   #:fixnum-array
    #:octet
    #:octet-vector
    #:ub8
