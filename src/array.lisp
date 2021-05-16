@@ -43,3 +43,7 @@
 (declaim (inline make-f64-array))
 (defun make-f64-array (size &optional (initial-element 0d0))
   (make-array size :element-type 'f64 :initial-element initial-element))
+
+(declaim (inline make-bit-vector))
+(defun make-bit-vector (size &optional (initial-element 0))
+  (make-array size :element-type 'bit :initial-element initial-element))
